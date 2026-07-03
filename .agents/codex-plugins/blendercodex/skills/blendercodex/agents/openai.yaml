@@ -1,0 +1,4 @@
+interface:
+  display_name: "BlenderCodex"
+  short_description: "Generate .blend files and live-control Blender temporarily"
+  default_prompt: "Use $blendercodex to launch Blender with a temporary bridge and edit the live scene without installing a Blender add-on."

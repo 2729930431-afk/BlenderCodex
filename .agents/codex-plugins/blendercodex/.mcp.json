@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "blendercodex": {
+      "cwd": ".",
+      "command": "node",
+      "args": [
+        ".\\scripts\\blendercodex_mcp_server.js"
+      ],
+      "note": "Starts the Codex-side BlenderCodex temporary bridge adapter. It does not require a Blender add-on; use blendercodex_start_bridge to launch Blender with the temporary bridge script for that process."
+    }
+  }
+}

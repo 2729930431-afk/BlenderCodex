@@ -1,0 +1,4 @@
+interface:
+  display_name: "Viewport Match"
+  short_description: "Match Blender viewport to a reference image"
+  default_prompt: "Use $viewport-match to capture the Blender window in the background, compare it to my reference image, and adjust the live model view."

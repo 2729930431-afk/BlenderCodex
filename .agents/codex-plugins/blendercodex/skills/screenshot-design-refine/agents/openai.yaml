@@ -1,0 +1,4 @@
+interface:
+  display_name: "Screenshot Design Refine"
+  short_description: "Refine Blender screenshots with direct image generation"
+  default_prompt: "Use $screenshot-design-refine to capture my Blender viewport and directly generate a refined design reference without requiring an API key."

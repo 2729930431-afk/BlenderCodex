@@ -1,0 +1,40 @@
+{
+  "name": "blendercodex",
+  "version": "0.1.0+codex.20260703113156",
+  "description": "Generate and update Blender .blend deliverables through local background bpy execution, with optional temporary live RPC control.",
+  "author": {
+    "name": "XT"
+  },
+  "keywords": [
+    "blender",
+    "codex",
+    "bpy",
+    "3d",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "BlenderCodex",
+    "shortDescription": "Generate, inspect, and update Blender models.",
+    "longDescription": "BlenderCodex supports two routes: create model, where Codex builds a new Blender project from scratch through local background bpy execution; and edit model, where Codex starts the user-specified or currently open .blend project through a temporary in-process RPC bridge for live updates. The bridge is one-shot for that Blender run only and does not install a Blender add-on.",
+    "developerName": "XT",
+    "category": "Productivity",
+    "capabilities": [
+      "Internal bpy execution",
+      "Temporary live Blender RPC",
+      "Local Blender discovery",
+      "Direct .blend generation",
+      "Optional Blender Python export",
+      "Temporary .blend comparison",
+      "Floor-aware internal structure generation",
+      "User-edit learning loop",
+      "Modeling deliverables"
+    ],
+    "defaultPrompt": [
+      "Use $blendercodex to create a new .blend project from my reference.",
+      "Use $blendercodex to edit my existing Blender model through the temporary bridge.",
+      "Use $model-learning to analyze my manual model edits and update BlenderCodex rules."
+    ]
+  }
+}

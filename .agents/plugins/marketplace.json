@@ -1,0 +1,20 @@
+{
+  "name": "blendercodex",
+  "interface": {
+    "displayName": "BlenderCodex"
+  },
+  "plugins": [
+    {
+      "name": "blendercodex",
+      "source": {
+        "source": "local",
+        "path": "./.agents/codex-plugins/blendercodex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

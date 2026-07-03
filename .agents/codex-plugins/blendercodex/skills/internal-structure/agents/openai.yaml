@@ -1,0 +1,4 @@
+interface:
+  display_name: "Internal Structure"
+  short_description: "Create floor-aware building interiors"
+  default_prompt: "Use $internal-structure to add floor-aware internal structure and stairs to this Blender building model."
