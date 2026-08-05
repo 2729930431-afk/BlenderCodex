@@ -1,4 +1,4 @@
 interface:
   display_name: "BlenderCodex"
-  short_description: "Generate .blend files and live-control Blender temporarily"
-  default_prompt: "Use $blendercodex to launch Blender with a temporary bridge and edit the live scene without installing a Blender add-on."
+  short_description: "Generate and edit Blender hard-surface models safely"
+  default_prompt: "Use $blendercodex to edit my Blender model with confirmed opening markers and validated hard-surface topology."

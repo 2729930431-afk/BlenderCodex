@@ -1,6 +1,6 @@
 ---
 name: blendercodex
-description: Generate new Blender .blend projects from scratch, or update existing/open Blender projects through a temporary live RPC bridge without installing a Blender add-on. Use when the user asks for BlenderCodex, image-to-Blender, text-to-Blender, direct .blend file generation, Blender Python modeling, Blender file inspection, live Blender scene control, temporary Blender RPC/bridge control, or preserving user edits before regenerating a .blend file.
+description: Generate new Blender .blend projects from scratch, or update existing/open Blender projects through a temporary live RPC bridge without installing a Blender add-on. Use when the user asks for BlenderCodex, image-to-Blender, text-to-Blender, direct .blend file generation, Blender Python modeling, Blender file inspection, live Blender scene control, temporary Blender RPC/bridge control, window/opening creation, or any hard-surface mesh generation, cleanup, retopology, topology rewrite, or edit that must preserve user changes.
 ---
 
 # BlenderCodex
@@ -95,6 +95,27 @@ Temporary live RPC rules:
 - Do not create backup `.blend` copies during live RPC edits unless the user explicitly requested a backup. Use targeted edits and verification instead.
 - For create-model work, prefer the background `.blend` workflow unless the user specifically asks for live scene control.
 
+## Mandatory Window Opening Approval Gate
+
+Apply this gate whenever the user asks to add, cut, create, arrange, move, or revise windows or comparable wall openings.
+
+1. Inspect the real building mesh, wall thickness, floor bands, existing doors/windows, facade rhythm, corners, and structural conflicts before proposing locations.
+2. Create or update semantic empty-object markers only. Put them in a pending-confirmation collection such as `窗位标记_待确认`; align each marker to its target wall and set its dimensions to the intended rough opening size. Give markers stable facade/floor names and opening metadata when practical.
+3. Show or summarize the marker plan and wait for explicit user confirmation. Do not cut, boolean, delete, rebuild, or otherwise change the target wall mesh before confirmation.
+4. After confirmation, re-read the live marker collection. Treat marker transforms as authoritative: preserve user-moved markers, honor deleted markers as removed openings, and never recreate or reset them unless asked.
+5. Cut only the confirmed markers, then standardize the exterior face, interior face, and reveal topology together under the hard-surface contract. Keep members of the same window family equal in rough width and height unless the user explicitly defines multiple sizes.
+6. Keep the marker collection hidden or otherwise non-obstructive after validation, but preserve it when future revision context is useful.
+
+## Mandatory Hard-Surface Topology Contract
+
+- For every hard-surface mesh creation or edit, read `references/hard-surface-topology-and-openings.md` before changing geometry. This applies to buildings, architectural shells, props, machines, vehicles, furniture, and any mesh whose form depends on deliberate planar, sharp, beveled, or manufactured surfaces.
+- Preserve approved shapes, object transforms, opening positions, meaningful seams, sharp edges, material assignments, and unrelated user edits. Capture a baseline signature for protected geometry before a localized topology rewrite.
+- Align edge flow to real features. Rectangular wall openings use continuous sill/head bands and vertical jamb/bay strips on both exterior and interior surfaces; do not leave Boolean diagonals or an unstandardized inner wall after cleaning the outer wall.
+- Prefer quads and simple planar rectilinear n-gons. Do not introduce convenience diagonals, triangle fans, overlapping faces, duplicate coincident edges, wire edges, degenerate faces, or avoidable poles. Curved, sloped, triangular, and beveled features may use non-orthogonal edges where the shape genuinely requires them.
+- For substantial topology rewrites, work on an object-mode mesh copy or detached BMesh, validate it, then atomically assign it to the object. Avoid destructive in-place Edit Mode BMesh rewrites combined with a manual undo push and immediate save.
+- Rebuild and verify `UV_4m_world_standard` after topology changes. Make it active/render and retain one UV unit per four world units.
+- Validate target face counts or coverage, normals, opening clearance, protected-geometry signatures, wire/degenerate geometry, and boundary/non-manifold counts. Save and reopen the serialized `.blend` after a substantial rewrite before reporting completion.
+
 ## Modeling Defaults
 
 - Do not add cameras or lights unless the user explicitly requests them.
@@ -140,3 +161,4 @@ Temporary live RPC rules:
 - Plugin-level `scripts/blendercodex_mcp_server.js`: Codex-side MCP adapter for starting and using the temporary bridge.
 - `references/modeling-standards.md`: load when deciding what to model or ignore from a reference.
 - `references/script-contract.md`: load before writing generated Blender bpy code.
+- `references/hard-surface-topology-and-openings.md`: mandatory rules for window approval gates and every hard-surface mesh operation.
