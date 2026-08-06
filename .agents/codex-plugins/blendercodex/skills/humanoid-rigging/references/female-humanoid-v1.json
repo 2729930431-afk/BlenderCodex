@@ -1,0 +1,4234 @@
+{
+  "schema_version": 1,
+  "template_id": "female-humanoid-v1",
+  "description": "女主标准人形骨架；已排除全部头发骨链。",
+  "source": {
+    "artifact": "新角色资产/主角建模.blend::女主骨骼",
+    "armature": "女主骨骼",
+    "blender_version": "5.0.0"
+  },
+  "coordinate_system": {
+    "space": "armature_local",
+    "up_axis": "+Z",
+    "right_axis": "-X",
+    "forward_axis": "-Y",
+    "unit_scale_meters": 1.0
+  },
+  "reference_metrics": {
+    "lowest_deform_z": 0.01645527,
+    "head_tail_z": 1.703921556,
+    "height": 1.687466286
+  },
+  "exclusion": {
+    "prefixes": [
+      "头发"
+    ],
+    "exact_names": [],
+    "excluded_bones": [
+      "头发根部",
+      "头发",
+      "头发.001",
+      "头发根部.001",
+      "头发.002",
+      "头发.003",
+      "头发根部.002",
+      "头发.004",
+      "头发.005",
+      "头发根部.003",
+      "头发.006",
+      "头发.007",
+      "头发根部.004",
+      "头发.008",
+      "头发.009",
+      "头发.010",
+      "头发.011",
+      "头发.012"
+    ]
+  },
+  "semantic_roles": {
+    "root": "IK_Root",
+    "pelvis": "Hips",
+    "spine_lower": "Spine",
+    "spine_upper": "UpperBody1",
+    "chest": "Chest",
+    "neck": "Neck",
+    "head": "Head",
+    "shoulder_r": "Right shoulder",
+    "upper_arm_r": "Right arm",
+    "elbow_r": "Right elbow",
+    "wrist_r": "Right wrist",
+    "shoulder_l": "Left shoulder",
+    "upper_arm_l": "Left arm",
+    "elbow_l": "Left elbow",
+    "wrist_l": "Left wrist",
+    "breast_r": "Breast1_R",
+    "breast_l": "Breast1_L",
+    "hip_r": "Right leg",
+    "knee_r": "Right knee",
+    "ankle_r": "Right ankle",
+    "toe_r": "Right toe",
+    "hip_l": "Left leg",
+    "knee_l": "Left knee",
+    "ankle_l": "Left ankle",
+    "toe_l": "Left toe",
+    "hand_ik_r": "IK_Hand_R",
+    "hand_ik_l": "IK_Hand_L",
+    "foot_ik_r": "IK_Foot_R",
+    "foot_ik_l": "IK_Foot_L",
+    "elbow_pole_r": "Pole_Elbow_R",
+    "elbow_pole_l": "Pole_Elbow_L",
+    "knee_pole_r": "Pole_Knee_R",
+    "knee_pole_l": "Pole_Knee_L",
+    "thumb_0_l": "Thumb0_L",
+    "thumb_1_l": "Thumb1_L",
+    "thumb_2_l": "Thumb2_L",
+    "index_1_l": "IndexFinger1_L",
+    "index_2_l": "IndexFinger2_L",
+    "index_3_l": "IndexFinger3_L",
+    "middle_1_l": "MiddleFinger1_L",
+    "middle_2_l": "MiddleFinger2_L",
+    "middle_3_l": "MiddleFinger3_L",
+    "ring_1_l": "RingFinger1_L",
+    "ring_2_l": "RingFinger2_L",
+    "ring_3_l": "RingFinger3_L",
+    "little_1_l": "LittleFinger1_L",
+    "little_2_l": "LittleFinger2_L",
+    "little_3_l": "LittleFinger3_L",
+    "thumb_0_r": "Thumb0_R",
+    "thumb_1_r": "Thumb1_R",
+    "thumb_2_r": "Thumb2_R",
+    "index_1_r": "IndexFinger1_R",
+    "index_2_r": "IndexFinger2_R",
+    "index_3_r": "IndexFinger3_R",
+    "middle_1_r": "MiddleFinger1_R",
+    "middle_2_r": "MiddleFinger2_R",
+    "middle_3_r": "MiddleFinger3_R",
+    "ring_1_r": "RingFinger1_R",
+    "ring_2_r": "RingFinger2_R",
+    "ring_3_r": "RingFinger3_R",
+    "little_1_r": "LittleFinger1_R",
+    "little_2_r": "LittleFinger2_R",
+    "little_3_r": "LittleFinger3_R"
+  },
+  "bones": [
+    {
+      "name": "IK_Root",
+      "parent": null,
+      "head": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail": [
+        0.0,
+        -0.200000003,
+        0.0
+      ],
+      "matrix_local": [
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.200000003,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "Hips",
+      "parent": "IK_Root",
+      "head": [
+        5e-09,
+        -0.01758647,
+        0.924770117
+      ],
+      "tail": [
+        5e-09,
+        -0.01758647,
+        1.02551651
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          0.0,
+          -8.7e-08,
+          5e-09
+        ],
+        [
+          -8.7e-08,
+          0.0,
+          -1.0,
+          -0.01758647
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.924770117
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.100746393,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.24999994,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Spine",
+      "parent": "Hips",
+      "head": [
+        1.3e-08,
+        -0.032170203,
+        1.037039757
+      ],
+      "tail": [
+        3.3e-08,
+        -0.043354366,
+        1.155842423
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          1.62e-07,
+          6e-08,
+          1.3e-08
+        ],
+        [
+          7.5e-08,
+          -0.09372627,
+          -0.995598018,
+          -0.032170203
+        ],
+        [
+          -1.56e-07,
+          0.995597959,
+          -0.09372627,
+          1.037039757
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.119327947,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.109830678,
+      "tail_radius": 0.054915339,
+      "envelope_distance": 0.274576753,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "UpperBody1",
+      "parent": "Spine",
+      "head": [
+        2.5e-08,
+        -0.049215194,
+        1.112650156
+      ],
+      "tail": [
+        2.5e-08,
+        -0.060008775,
+        1.196385145
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          -0.0,
+          -2.38e-07,
+          2.5e-08
+        ],
+        [
+          -2.36e-07,
+          -0.127843961,
+          -0.991794348,
+          -0.049215194
+        ],
+        [
+          -3e-08,
+          0.991794288,
+          -0.127843961,
+          1.112650156
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.084427789,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.194767505,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "UpperBody1_end",
+      "parent": "UpperBody1",
+      "head": [
+        2.5e-08,
+        -0.060008775,
+        1.196385145
+      ],
+      "tail": [
+        1.8e-08,
+        -0.047565915,
+        1.360351562
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          -4.3e-08,
+          -1.99e-07,
+          2.5e-08
+        ],
+        [
+          -1.95e-07,
+          0.075669065,
+          -0.997133017,
+          -0.060008775
+        ],
+        [
+          5.8e-08,
+          0.997133017,
+          0.075669065,
+          1.196385145
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.164437845,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.194767505,
+      "tail_radius": 0.097383752,
+      "envelope_distance": 0.486918688,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Chest",
+      "parent": "UpperBody1",
+      "head": [
+        1.8e-08,
+        -0.054049544,
+        1.275301456
+      ],
+      "tail": [
+        -1.06e-07,
+        -0.013709688,
+        1.409340501
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          -8.84e-07,
+          8.95e-07,
+          1.8e-08
+        ],
+        [
+          1.112e-06,
+          0.288187623,
+          -0.957574069,
+          -0.054049544
+        ],
+        [
+          5.88e-07,
+          0.95757395,
+          0.288187563,
+          1.275301456
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.139977753,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Neck",
+      "parent": "Chest",
+      "head": [
+        -1.47e-07,
+        0.00283386,
+        1.412217498
+      ],
+      "tail": [
+        -1.09e-07,
+        0.009569899,
+        1.481682301
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          5.44e-07,
+          -2.55e-07,
+          -1.47e-07
+        ],
+        [
+          -3.07e-07,
+          0.096517816,
+          -0.995331347,
+          0.002833862
+        ],
+        [
+          -5.17e-07,
+          0.995331228,
+          0.096517771,
+          1.412217498
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.069790646,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Head",
+      "parent": "Neck",
+      "head": [
+        -1.12e-07,
+        0.009412234,
+        1.476874709
+      ],
+      "tail": [
+        -1.18e-07,
+        0.009412264,
+        1.703921556
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          -2.8e-08,
+          2.66e-07,
+          -1.12e-07
+        ],
+        [
+          2.66e-07,
+          1.49e-07,
+          -1.000000119,
+          0.009412237
+        ],
+        [
+          2.8e-08,
+          1.0,
+          1.12e-07,
+          1.476874709
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.227046847,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.146793842,
+      "tail_radius": 0.024709124,
+      "envelope_distance": 0.366984725,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right shoulder",
+      "parent": "Chest",
+      "head": [
+        -0.008337323,
+        0.001224456,
+        1.381732464
+      ],
+      "tail": [
+        -0.137642443,
+        0.024399608,
+        1.360449433
+      ],
+      "matrix_local": [
+        [
+          0.205562204,
+          -0.971645772,
+          -0.116826057,
+          -0.008337323
+        ],
+        [
+          0.956400394,
+          0.174146548,
+          0.234459251,
+          0.001224454
+        ],
+        [
+          -0.207466424,
+          -0.159928441,
+          0.965080619,
+          1.381732464
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.133078441,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.122713365,
+      "tail_radius": 0.090643898,
+      "envelope_distance": 0.306783348,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right arm",
+      "parent": "Right shoulder",
+      "head": [
+        -0.137642443,
+        0.024399608,
+        1.360449433
+      ],
+      "tail": [
+        -0.294718653,
+        0.02264725,
+        1.334958553
+      ],
+      "matrix_local": [
+        [
+          0.069931507,
+          -0.987026572,
+          -0.144526362,
+          -0.137642428
+        ],
+        [
+          0.868557215,
+          -0.011011345,
+          0.495466352,
+          0.024399607
+        ],
+        [
+          -0.490629941,
+          -0.160178155,
+          0.856519222,
+          1.360449433
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.159140825,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.090643898,
+      "tail_radius": 0.052271798,
+      "envelope_distance": 0.226172149,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right elbow",
+      "parent": "Right arm",
+      "head": [
+        -0.294718653,
+        0.02264725,
+        1.334958553
+      ],
+      "tail": [
+        -0.510040581,
+        0.013037363,
+        1.300592899
+      ],
+      "matrix_local": [
+        [
+          0.048519328,
+          -0.986544132,
+          -0.15612869,
+          -0.294718653
+        ],
+        [
+          0.840824842,
+          -0.04402978,
+          0.539513469,
+          0.022647252
+        ],
+        [
+          -0.539128304,
+          -0.157453716,
+          0.827374756,
+          1.334958553
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.218258753,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.052271798,
+      "tail_radius": 0.029859589,
+      "envelope_distance": 0.244987428,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right wrist",
+      "parent": "Right elbow",
+      "head": [
+        -0.510522127,
+        0.015914742,
+        1.301117778
+      ],
+      "tail": [
+        -0.553206384,
+        0.011130879,
+        1.298304796
+      ],
+      "matrix_local": [
+        [
+          -0.064193971,
+          -0.991653442,
+          -0.111812986,
+          -0.510522127
+        ],
+        [
+          0.865197241,
+          -0.111140139,
+          0.488959372,
+          0.015914746
+        ],
+        [
+          -0.497305274,
+          -0.065352038,
+          0.865110755,
+          1.301117778
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.043043524,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.076354198,
+      "tail_radius": 0.038662054,
+      "envelope_distance": 0.190885365,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb0_R",
+      "parent": "Right wrist",
+      "head": [
+        -0.504221976,
+        0.007208679,
+        1.298247695
+      ],
+      "tail": [
+        -0.522973359,
+        -0.010842084,
+        1.292739153
+      ],
+      "matrix_local": [
+        [
+          0.02056418,
+          -0.704825342,
+          -0.709082425,
+          -0.504221976
+        ],
+        [
+          0.272215605,
+          -0.67849052,
+          0.682311416,
+          0.007208684
+        ],
+        [
+          -0.962016582,
+          -0.207054585,
+          0.177911997,
+          1.298247695
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.026604297,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.055169482,
+      "tail_radius": 0.077743627,
+      "envelope_distance": 0.137923539,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb1_R",
+      "parent": "Thumb0_R",
+      "head": [
+        -0.522973359,
+        -0.010842084,
+        1.292739153
+      ],
+      "tail": [
+        -0.535344839,
+        -0.019071853,
+        1.283408284
+      ],
+      "matrix_local": [
+        [
+          0.478604198,
+          -0.705104709,
+          -0.523225367,
+          -0.522973359
+        ],
+        [
+          0.238583535,
+          -0.469050467,
+          0.850334644,
+          -0.01084208
+        ],
+        [
+          -0.844994664,
+          -0.531807005,
+          -0.056263149,
+          1.292739153
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.017545594,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.077743627,
+      "tail_radius": 0.098800741,
+      "envelope_distance": 0.194358423,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb2_R",
+      "parent": "Thumb1_R",
+      "head": [
+        -0.535344839,
+        -0.019071853,
+        1.283408284
+      ],
+      "tail": [
+        -0.552275419,
+        -0.029058028,
+        1.279317737
+      ],
+      "matrix_local": [
+        [
+          0.090454847,
+          -0.843266606,
+          -0.529829025,
+          -0.535344839
+        ],
+        [
+          0.242323995,
+          -0.497384518,
+          0.832998931,
+          -0.019071849
+        ],
+        [
+          -0.965969682,
+          -0.203739196,
+          0.159353018,
+          1.283408284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.020077378,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.098800741,
+      "tail_radius": 0.008885768,
+      "envelope_distance": 0.247002006,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb2_R_end",
+      "parent": "Thumb2_R",
+      "head": [
+        -0.552275419,
+        -0.029058028,
+        1.279317737
+      ],
+      "tail": [
+        -0.586548567,
+        -0.027115595,
+        1.274861097
+      ],
+      "matrix_local": [
+        [
+          0.065371305,
+          -0.990088761,
+          0.124299556,
+          -0.552275419
+        ],
+        [
+          -0.627211332,
+          0.056113452,
+          0.776824832,
+          -0.029058026
+        ],
+        [
+          -0.776100993,
+          -0.1287442,
+          -0.617327094,
+          1.279317737
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.034616239,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.008885768,
+      "tail_radius": 4.564245701,
+      "envelope_distance": 22.82119751,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger1_R",
+      "parent": "Right wrist",
+      "head": [
+        -0.5564394,
+        -0.006303828,
+        1.298321009
+      ],
+      "tail": [
+        -0.575486004,
+        -0.006612752,
+        1.299435496
+      ],
+      "matrix_local": [
+        [
+          -0.04670212,
+          -0.998161495,
+          0.038630009,
+          -0.5564394
+        ],
+        [
+          0.819661975,
+          -0.016189523,
+          0.572618306,
+          -0.006303826
+        ],
+        [
+          -0.570940256,
+          0.058406107,
+          0.818911493,
+          1.298321009
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.019081688,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272846,
+      "tail_radius": 0.08027292,
+      "envelope_distance": 0.200681776,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger2_R",
+      "parent": "IndexFinger1_R",
+      "head": [
+        -0.575486004,
+        -0.006612752,
+        1.299435496
+      ],
+      "tail": [
+        -0.594420075,
+        -0.006696569,
+        1.29929626
+      ],
+      "matrix_local": [
+        [
+          -2.8294e-05,
+          -0.999962986,
+          -0.008583009,
+          -0.575486004
+        ],
+        [
+          0.858443975,
+          -0.00442663,
+          0.512887895,
+          -0.00661275
+        ],
+        [
+          -0.512907028,
+          -0.007353477,
+          0.858412683,
+          1.299435496
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018934773,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.08027292,
+      "tail_radius": 0.080272466,
+      "envelope_distance": 0.200682253,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger3_R",
+      "parent": "IndexFinger2_R",
+      "head": [
+        -0.594420075,
+        -0.006696569,
+        1.29929626
+      ],
+      "tail": [
+        -0.604495823,
+        -0.007256771,
+        1.298155308
+      ],
+      "matrix_local": [
+        [
+          -0.024727838,
+          -0.992136598,
+          -0.12269152,
+          -0.594420075
+        ],
+        [
+          0.966335416,
+          -0.055161823,
+          0.251301944,
+          -0.006696567
+        ],
+        [
+          -0.25609374,
+          -0.112347007,
+          0.960101128,
+          1.29929626
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.010155607,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272466,
+      "tail_radius": 0.002191188,
+      "envelope_distance": 0.200680837,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger3_R_end",
+      "parent": "IndexFinger3_R",
+      "head": [
+        -0.604495823,
+        -0.007256771,
+        1.298155308
+      ],
+      "tail": [
+        -0.633734286,
+        -0.012132808,
+        1.294325948
+      ],
+      "matrix_local": [
+        [
+          0.028319545,
+          -0.978248358,
+          -0.205494076,
+          -0.604495823
+        ],
+        [
+          0.506824493,
+          -0.163140431,
+          0.84647125,
+          -0.007256769
+        ],
+        [
+          -0.861583948,
+          -0.128121138,
+          0.49118045,
+          1.298155308
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.029888591,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.002191188,
+      "tail_radius": 25.932098389,
+      "envelope_distance": 129.660675049,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger1_R",
+      "parent": "Right wrist",
+      "head": [
+        -0.557920516,
+        0.005091038,
+        1.298093915
+      ],
+      "tail": [
+        -0.576868534,
+        0.004306396,
+        1.299655795
+      ],
+      "matrix_local": [
+        [
+          -0.082611986,
+          -0.995772064,
+          0.040161058,
+          -0.557920575
+        ],
+        [
+          0.792705715,
+          -0.041235112,
+          0.608208001,
+          0.005091041
+        ],
+        [
+          -0.60398066,
+          0.082081228,
+          0.792761028,
+          1.298093915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01902847,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272801,
+      "tail_radius": 0.080272868,
+      "envelope_distance": 0.200681776,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger2_R",
+      "parent": "MiddleFinger1_R",
+      "head": [
+        -0.576868534,
+        0.004306396,
+        1.299655795
+      ],
+      "tail": [
+        -0.59808737,
+        0.004755729,
+        1.298734546
+      ],
+      "matrix_local": [
+        [
+          0.041752983,
+          -0.998835146,
+          -0.024180323,
+          -0.576868594
+        ],
+        [
+          0.829344869,
+          0.02115145,
+          0.558336198,
+          0.0043064
+        ],
+        [
+          -0.557174563,
+          -0.043366008,
+          0.829262257,
+          1.299655795
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.021243582,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272868,
+      "tail_radius": 0.073531047,
+      "envelope_distance": 0.200681806,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger3_R",
+      "parent": "MiddleFinger2_R",
+      "head": [
+        -0.59808737,
+        0.004755729,
+        1.298734546
+      ],
+      "tail": [
+        -0.609071076,
+        0.004541255,
+        1.296691418
+      ],
+      "matrix_local": [
+        [
+          0.03406921,
+          -0.982954443,
+          -0.180664077,
+          -0.59808743
+        ],
+        [
+          0.95829308,
+          -0.019193746,
+          0.285141349,
+          0.004755733
+        ],
+        [
+          -0.283748627,
+          -0.182843715,
+          0.941304803,
+          1.298734546
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.011174176,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.073531047,
+      "tail_radius": 0.001211252,
+      "envelope_distance": 0.183826908,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger3_R_end",
+      "parent": "MiddleFinger3_R",
+      "head": [
+        -0.609071076,
+        0.004541255,
+        1.296691418
+      ],
+      "tail": [
+        -0.627039373,
+        0.001610443,
+        1.293171048
+      ],
+      "matrix_local": [
+        [
+          0.052144941,
+          -0.969007552,
+          -0.241464138,
+          -0.609071136
+        ],
+        [
+          0.620336175,
+          -0.158054918,
+          0.768245518,
+          0.004541258
+        ],
+        [
+          -0.782600582,
+          -0.189849108,
+          0.592868924,
+          1.296691418
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018542992,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.001211252,
+      "tail_radius": 8.719244003,
+      "envelope_distance": 43.596206665,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger1_R",
+      "parent": "Right wrist",
+      "head": [
+        -0.55845058,
+        0.015765097,
+        1.294846654
+      ],
+      "tail": [
+        -0.577139914,
+        0.017438252,
+        1.297148228
+      ],
+      "matrix_local": [
+        [
+          0.010521281,
+          -0.988607287,
+          0.150148094,
+          -0.55845058
+        ],
+        [
+          0.847511172,
+          0.08850462,
+          0.523346305,
+          0.015765101
+        ],
+        [
+          -0.530672908,
+          0.121746026,
+          0.838787317,
+          1.294846654
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01890471,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273442,
+      "tail_radius": 0.080273077,
+      "envelope_distance": 0.200683057,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger2_R",
+      "parent": "RingFinger1_R",
+      "head": [
+        -0.577139914,
+        0.017438252,
+        1.297148228
+      ],
+      "tail": [
+        -0.59431529,
+        0.016493503,
+        1.297473907
+      ],
+      "matrix_local": [
+        [
+          -0.054140665,
+          -0.99831152,
+          -0.021037489,
+          -0.577139914
+        ],
+        [
+          0.761687338,
+          -0.0549131,
+          0.645613313,
+          0.017438255
+        ],
+        [
+          -0.645678461,
+          0.018930003,
+          0.763374686,
+          1.297148228
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.017204428,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273077,
+      "tail_radius": 0.080273047,
+      "envelope_distance": 0.200682461,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger3_R",
+      "parent": "RingFinger2_R",
+      "head": [
+        -0.59431529,
+        0.016493503,
+        1.297473907
+      ],
+      "tail": [
+        -0.604964495,
+        0.016486501,
+        1.296998382
+      ],
+      "matrix_local": [
+        [
+          0.013170108,
+          -0.999004185,
+          -0.042625867,
+          -0.59431529
+        ],
+        [
+          0.950990021,
+          -0.000656829,
+          0.309220076,
+          0.016493507
+        ],
+        [
+          -0.308939993,
+          -0.044609178,
+          0.950034797,
+          1.297473907
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.010659819,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273047,
+      "tail_radius": 0.001378013,
+      "envelope_distance": 0.200682178,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger3_R_end",
+      "parent": "RingFinger3_R",
+      "head": [
+        -0.604964495,
+        0.016486501,
+        1.296998382
+      ],
+      "tail": [
+        -0.623103678,
+        0.015362319,
+        1.292671561
+      ],
+      "matrix_local": [
+        [
+          0.171164393,
+          -0.970947146,
+          -0.167225435,
+          -0.604964495
+        ],
+        [
+          0.501725316,
+          -0.060174815,
+          0.862931252,
+          0.016486505
+        ],
+        [
+          -0.847923517,
+          -0.231604367,
+          0.476849407,
+          1.296998382
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018681949,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.001378013,
+      "tail_radius": 13.329118729,
+      "envelope_distance": 66.645698547,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger1_R",
+      "parent": "Right wrist",
+      "head": [
+        -0.558010042,
+        0.025498401,
+        1.290245652
+      ],
+      "tail": [
+        -0.572980464,
+        0.026402043,
+        1.29300189
+      ],
+      "matrix_local": [
+        [
+          -0.058566038,
+          -0.981741846,
+          0.18097654,
+          -0.558010042
+        ],
+        [
+          0.809904695,
+          0.059259683,
+          0.58356005,
+          0.025498405
+        ],
+        [
+          -0.583630145,
+          0.180750653,
+          0.791647136,
+          1.290245652
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01524884,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272965,
+      "tail_radius": 0.080274031,
+      "envelope_distance": 0.200681984,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger2_R",
+      "parent": "LittleFinger1_R",
+      "head": [
+        -0.572980464,
+        0.026402043,
+        1.29300189
+      ],
+      "tail": [
+        -0.588139057,
+        0.026867351,
+        1.294535995
+      ],
+      "matrix_local": [
+        [
+          -0.044400249,
+          -0.994454026,
+          0.095337875,
+          -0.572980464
+        ],
+        [
+          0.745630145,
+          0.030525707,
+          0.665660143,
+          0.026402047
+        ],
+        [
+          -0.664878964,
+          0.100642338,
+          0.740139902,
+          1.29300189
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.015243132,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080274031,
+      "tail_radius": 0.080272019,
+      "envelope_distance": 0.200684413,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger3_R",
+      "parent": "LittleFinger2_R",
+      "head": [
+        -0.588139057,
+        0.026867351,
+        1.294535995
+      ],
+      "tail": [
+        -0.59969449,
+        0.026613858,
+        1.292775393
+      ],
+      "matrix_local": [
+        [
+          0.048194554,
+          -0.988358736,
+          -0.144305378,
+          -0.588139057
+        ],
+        [
+          0.894200265,
+          -0.021681748,
+          0.4471412,
+          0.026867354
+        ],
+        [
+          -0.445064902,
+          -0.150587708,
+          0.882745981,
+          1.294535995
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.011691539,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272019,
+      "tail_radius": 0.001365521,
+      "envelope_distance": 0.200679854,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger3_R_end",
+      "parent": "LittleFinger3_R",
+      "head": [
+        -0.59969449,
+        0.026613858,
+        1.292775393
+      ],
+      "tail": [
+        -0.617919207,
+        0.025485894,
+        1.292455912
+      ],
+      "matrix_local": [
+        [
+          -0.016209356,
+          -0.997937381,
+          -0.062113799,
+          -0.59969449
+        ],
+        [
+          0.506133676,
+          -0.061764318,
+          0.860240221,
+          0.026613861
+        ],
+        [
+          -0.862302542,
+          -0.017493933,
+          0.506091118,
+          1.292775393
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018262386,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.001365521,
+      "tail_radius": 8.821068764,
+      "envelope_distance": 44.105373383,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left shoulder",
+      "parent": "Chest",
+      "head": [
+        0.008337323,
+        0.001224456,
+        1.381732464
+      ],
+      "tail": [
+        0.137642443,
+        0.024399608,
+        1.360449433
+      ],
+      "matrix_local": [
+        [
+          0.205562204,
+          0.971645892,
+          0.116826057,
+          0.008337323
+        ],
+        [
+          -0.956400514,
+          0.174146533,
+          0.234459311,
+          0.001224454
+        ],
+        [
+          0.207466483,
+          -0.159928441,
+          0.9650805,
+          1.381732464
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.133078441,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.123227894,
+      "tail_radius": 0.090643898,
+      "envelope_distance": 0.308069557,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left arm",
+      "parent": "Left shoulder",
+      "head": [
+        0.137642443,
+        0.024399608,
+        1.360449433
+      ],
+      "tail": [
+        0.294718653,
+        0.02264725,
+        1.334958553
+      ],
+      "matrix_local": [
+        [
+          0.069931477,
+          0.987026691,
+          0.144526392,
+          0.137642443
+        ],
+        [
+          -0.868557334,
+          -0.011011366,
+          0.495466411,
+          0.024399603
+        ],
+        [
+          0.490629882,
+          -0.160178155,
+          0.856519163,
+          1.360449433
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.15914081,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.090643898,
+      "tail_radius": 0.052271791,
+      "envelope_distance": 0.226372793,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left elbow",
+      "parent": "Left arm",
+      "head": [
+        0.294718653,
+        0.02264725,
+        1.334958553
+      ],
+      "tail": [
+        0.510040581,
+        0.013037363,
+        1.300592899
+      ],
+      "matrix_local": [
+        [
+          0.048519291,
+          0.986544251,
+          0.156128705,
+          0.294718683
+        ],
+        [
+          -0.840824962,
+          -0.044029791,
+          0.539513469,
+          0.022647245
+        ],
+        [
+          0.539128184,
+          -0.157453716,
+          0.827374756,
+          1.334958553
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.218258739,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.052271791,
+      "tail_radius": 0.029859576,
+      "envelope_distance": 0.244987413,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left wrist",
+      "parent": "Left elbow",
+      "head": [
+        0.510522127,
+        0.015914742,
+        1.301117778
+      ],
+      "tail": [
+        0.553206384,
+        0.011130879,
+        1.298304796
+      ],
+      "matrix_local": [
+        [
+          -0.064194016,
+          0.991653562,
+          0.111812986,
+          0.510522127
+        ],
+        [
+          -0.865197361,
+          -0.111140147,
+          0.488959372,
+          0.015914738
+        ],
+        [
+          0.497305155,
+          -0.065352038,
+          0.865110755,
+          1.301117778
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.043043517,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.07727965,
+      "tail_radius": 0.038662057,
+      "envelope_distance": 0.193314806,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb0_L",
+      "parent": "Left wrist",
+      "head": [
+        0.504221976,
+        0.007208679,
+        1.298247695
+      ],
+      "tail": [
+        0.522973359,
+        -0.010842084,
+        1.292739153
+      ],
+      "matrix_local": [
+        [
+          0.020564146,
+          0.704825401,
+          0.709082544,
+          0.504221976
+        ],
+        [
+          -0.272215664,
+          -0.678490579,
+          0.682311475,
+          0.007208676
+        ],
+        [
+          0.962016463,
+          -0.207054645,
+          0.177912056,
+          1.298247695
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.026604297,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.055313159,
+      "tail_radius": 0.077743627,
+      "envelope_distance": 0.138904035,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb1_L",
+      "parent": "Thumb0_L",
+      "head": [
+        0.522973359,
+        -0.010842084,
+        1.292739153
+      ],
+      "tail": [
+        0.535344839,
+        -0.019071853,
+        1.283408284
+      ],
+      "matrix_local": [
+        [
+          0.478604317,
+          0.705104768,
+          0.523225427,
+          0.522973359
+        ],
+        [
+          -0.238583639,
+          -0.469050527,
+          0.850334764,
+          -0.010842089
+        ],
+        [
+          0.844994545,
+          -0.531807125,
+          -0.056263074,
+          1.292739153
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.017545592,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.077743627,
+      "tail_radius": 0.09771695,
+      "envelope_distance": 0.192774132,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb2_L",
+      "parent": "Thumb1_L",
+      "head": [
+        0.535344839,
+        -0.019071853,
+        1.283408284
+      ],
+      "tail": [
+        0.552275419,
+        -0.029058028,
+        1.279317737
+      ],
+      "matrix_local": [
+        [
+          0.090454802,
+          0.843266785,
+          0.529829025,
+          0.535344839
+        ],
+        [
+          -0.24232398,
+          -0.497384608,
+          0.832999051,
+          -0.019071858
+        ],
+        [
+          0.965969563,
+          -0.203739226,
+          0.159353048,
+          1.283408284
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.020077372,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.09771695,
+      "tail_radius": 0.008202719,
+      "envelope_distance": 0.245279908,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Thumb2_L_end",
+      "parent": "Thumb2_L",
+      "head": [
+        0.552275419,
+        -0.029058028,
+        1.279317737
+      ],
+      "tail": [
+        0.585251868,
+        -0.028480055,
+        1.276510835
+      ],
+      "matrix_local": [
+        [
+          0.074971288,
+          0.996244907,
+          0.043301523,
+          0.552275419
+        ],
+        [
+          -0.663857341,
+          0.017461061,
+          0.747655272,
+          -0.029058035
+        ],
+        [
+          0.744091868,
+          -0.084798768,
+          0.66267395,
+          1.279317737
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.033100743,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.008202719,
+      "tail_radius": 0.915770769,
+      "envelope_distance": 4.578856945,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger1_L",
+      "parent": "Left wrist",
+      "head": [
+        0.5564394,
+        -0.006303828,
+        1.298321009
+      ],
+      "tail": [
+        0.575486004,
+        -0.006612752,
+        1.299435496
+      ],
+      "matrix_local": [
+        [
+          -0.046702165,
+          0.998161495,
+          -0.038630024,
+          0.5564394
+        ],
+        [
+          -0.819662094,
+          -0.016189508,
+          0.572618365,
+          -0.006303834
+        ],
+        [
+          0.570940137,
+          0.058406115,
+          0.818911493,
+          1.298321009
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.019081688,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272846,
+      "tail_radius": 0.08027292,
+      "envelope_distance": 0.200681776,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger2_L",
+      "parent": "IndexFinger1_L",
+      "head": [
+        0.575486004,
+        -0.006612752,
+        1.299435496
+      ],
+      "tail": [
+        0.594420075,
+        -0.006696569,
+        1.29929626
+      ],
+      "matrix_local": [
+        [
+          -2.8348e-05,
+          0.999963045,
+          0.008583009,
+          0.575486004
+        ],
+        [
+          -0.858444095,
+          -0.00442663,
+          0.512887955,
+          -0.006612757
+        ],
+        [
+          0.512906909,
+          -0.007353473,
+          0.858412683,
+          1.299435496
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018934771,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.08027292,
+      "tail_radius": 0.080272466,
+      "envelope_distance": 0.200682253,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger3_L",
+      "parent": "IndexFinger2_L",
+      "head": [
+        0.594420075,
+        -0.006696569,
+        1.29929626
+      ],
+      "tail": [
+        0.604495823,
+        -0.007256771,
+        1.298155308
+      ],
+      "matrix_local": [
+        [
+          -0.02472789,
+          0.992136598,
+          0.122691534,
+          0.594420075
+        ],
+        [
+          -0.966335595,
+          -0.055161826,
+          0.251301944,
+          -0.006696574
+        ],
+        [
+          0.256093621,
+          -0.112347029,
+          0.960101128,
+          1.29929626
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.010155606,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272466,
+      "tail_radius": 0.002864376,
+      "envelope_distance": 0.200680837,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IndexFinger3_L_end",
+      "parent": "IndexFinger3_L",
+      "head": [
+        0.604495823,
+        -0.007256771,
+        1.298155308
+      ],
+      "tail": [
+        0.617907345,
+        -0.011545094,
+        1.296112299
+      ],
+      "matrix_local": [
+        [
+          -0.025674522,
+          0.942622602,
+          0.33287102,
+          0.604495823
+        ],
+        [
+          -0.494265318,
+          -0.301402867,
+          0.815388262,
+          -0.007256776
+        ],
+        [
+          0.86893177,
+          -0.143591911,
+          0.473644197,
+          1.298155308
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01422788,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.002864376,
+      "tail_radius": 1.080414057,
+      "envelope_distance": 5.40207243,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger1_L",
+      "parent": "Left wrist",
+      "head": [
+        0.557920516,
+        0.005091038,
+        1.298093915
+      ],
+      "tail": [
+        0.576868534,
+        0.004306396,
+        1.299655795
+      ],
+      "matrix_local": [
+        [
+          -0.082612038,
+          0.995772183,
+          -0.040161036,
+          0.557920516
+        ],
+        [
+          -0.792705834,
+          -0.041235141,
+          0.60820806,
+          0.005091034
+        ],
+        [
+          0.603980482,
+          0.082081214,
+          0.792761087,
+          1.298093915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01902847,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272801,
+      "tail_radius": 0.080272868,
+      "envelope_distance": 0.200681776,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger2_L",
+      "parent": "MiddleFinger1_L",
+      "head": [
+        0.576868534,
+        0.004306396,
+        1.299655795
+      ],
+      "tail": [
+        0.59808737,
+        0.004755729,
+        1.298734546
+      ],
+      "matrix_local": [
+        [
+          0.041752946,
+          0.998835266,
+          0.02418036,
+          0.576868534
+        ],
+        [
+          -0.829344988,
+          0.021151438,
+          0.558336258,
+          0.004306392
+        ],
+        [
+          0.557174325,
+          -0.043366022,
+          0.829262316,
+          1.299655795
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.021243578,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272868,
+      "tail_radius": 0.072572589,
+      "envelope_distance": 0.200681806,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger3_L",
+      "parent": "MiddleFinger2_L",
+      "head": [
+        0.59808737,
+        0.004755729,
+        1.298734546
+      ],
+      "tail": [
+        0.609071076,
+        0.004541255,
+        1.296691418
+      ],
+      "matrix_local": [
+        [
+          0.034069184,
+          0.982954562,
+          0.180664107,
+          0.59808737
+        ],
+        [
+          -0.9582932,
+          -0.019193728,
+          0.285141349,
+          0.004755725
+        ],
+        [
+          0.283748448,
+          -0.182843745,
+          0.941304803,
+          1.298734546
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.011174176,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.072572589,
+      "tail_radius": 0.002969066,
+      "envelope_distance": 0.181430772,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "MiddleFinger3_L_end",
+      "parent": "MiddleFinger3_L",
+      "head": [
+        0.609071076,
+        0.004541255,
+        1.296691418
+      ],
+      "tail": [
+        0.6221596,
+        0.001295182,
+        1.29112947
+      ],
+      "matrix_local": [
+        [
+          0.212084994,
+          0.897270799,
+          0.387201548,
+          0.609071076
+        ],
+        [
+          -0.540213466,
+          -0.222531259,
+          0.811571956,
+          0.00454125
+        ],
+        [
+          0.814364195,
+          -0.381293803,
+          0.437522382,
+          1.296691418
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.014587039,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.002969066,
+      "tail_radius": 0.731402278,
+      "envelope_distance": 3.657011747,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger1_L",
+      "parent": "Left wrist",
+      "head": [
+        0.55845058,
+        0.015765097,
+        1.294846654
+      ],
+      "tail": [
+        0.577139914,
+        0.017438252,
+        1.297148228
+      ],
+      "matrix_local": [
+        [
+          0.01052125,
+          0.988607347,
+          -0.150148124,
+          0.55845058
+        ],
+        [
+          -0.847511292,
+          0.088504635,
+          0.523346305,
+          0.015765093
+        ],
+        [
+          0.530672789,
+          0.121746041,
+          0.838787317,
+          1.294846654
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.018904708,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273442,
+      "tail_radius": 0.080273077,
+      "envelope_distance": 0.200683057,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger2_L",
+      "parent": "RingFinger1_L",
+      "head": [
+        0.577139914,
+        0.017438252,
+        1.297148228
+      ],
+      "tail": [
+        0.59431529,
+        0.016493503,
+        1.297473907
+      ],
+      "matrix_local": [
+        [
+          -0.054140713,
+          0.998311579,
+          0.021037474,
+          0.577139914
+        ],
+        [
+          -0.761687458,
+          -0.054913107,
+          0.645613313,
+          0.017438248
+        ],
+        [
+          0.645678341,
+          0.018930018,
+          0.763374686,
+          1.297148228
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.017204424,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273077,
+      "tail_radius": 0.080273047,
+      "envelope_distance": 0.200682461,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger3_L",
+      "parent": "RingFinger2_L",
+      "head": [
+        0.59431529,
+        0.016493503,
+        1.297473907
+      ],
+      "tail": [
+        0.604964495,
+        0.016486501,
+        1.296998382
+      ],
+      "matrix_local": [
+        [
+          0.013170069,
+          0.999004126,
+          0.042625863,
+          0.59431529
+        ],
+        [
+          -0.950990081,
+          -0.000656833,
+          0.309220046,
+          0.016493499
+        ],
+        [
+          0.308939874,
+          -0.044609182,
+          0.950034738,
+          1.297473907
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.010659819,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080273047,
+      "tail_radius": 0.002871549,
+      "envelope_distance": 0.200682178,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "RingFinger3_L_end",
+      "parent": "RingFinger3_L",
+      "head": [
+        0.604964495,
+        0.016486501,
+        1.296998382
+      ],
+      "tail": [
+        0.61871624,
+        0.012751354,
+        1.29529202
+      ],
+      "matrix_local": [
+        [
+          0.001795366,
+          0.958190978,
+          0.286123246,
+          0.604964495
+        ],
+        [
+          -0.410054207,
+          -0.260256797,
+          0.874140441,
+          0.016486498
+        ],
+        [
+          0.912059128,
+          -0.118895493,
+          0.392443359,
+          1.296998382
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.014351779,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.002871549,
+      "tail_radius": 0.997241974,
+      "envelope_distance": 4.986198425,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger1_L",
+      "parent": "Left wrist",
+      "head": [
+        0.558010042,
+        0.025498401,
+        1.290245652
+      ],
+      "tail": [
+        0.572980464,
+        0.026402043,
+        1.29300189
+      ],
+      "matrix_local": [
+        [
+          -0.05856609,
+          0.981741905,
+          -0.180976629,
+          0.558010042
+        ],
+        [
+          -0.809904814,
+          0.059259713,
+          0.583560109,
+          0.025498401
+        ],
+        [
+          0.583630025,
+          0.180750713,
+          0.791647136,
+          1.290245652
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.015248839,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272965,
+      "tail_radius": 0.080274031,
+      "envelope_distance": 0.200681984,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger2_L",
+      "parent": "LittleFinger1_L",
+      "head": [
+        0.572980464,
+        0.026402043,
+        1.29300189
+      ],
+      "tail": [
+        0.588139057,
+        0.026867351,
+        1.294535995
+      ],
+      "matrix_local": [
+        [
+          -0.044400275,
+          0.994454145,
+          -0.095337883,
+          0.572980464
+        ],
+        [
+          -0.745630264,
+          0.03052571,
+          0.665660203,
+          0.026402043
+        ],
+        [
+          0.664878786,
+          0.100642323,
+          0.740139961,
+          1.29300189
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.01524313,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080274031,
+      "tail_radius": 0.080272019,
+      "envelope_distance": 0.200684413,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger3_L",
+      "parent": "LittleFinger2_L",
+      "head": [
+        0.588139057,
+        0.026867351,
+        1.294535995
+      ],
+      "tail": [
+        0.59969449,
+        0.026613858,
+        1.292775393
+      ],
+      "matrix_local": [
+        [
+          0.04819452,
+          0.988358796,
+          0.144305378,
+          0.588139057
+        ],
+        [
+          -0.894200444,
+          -0.021681733,
+          0.44714123,
+          0.026867351
+        ],
+        [
+          0.445064723,
+          -0.150587723,
+          0.882745981,
+          1.294535995
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.011691537,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.080272019,
+      "tail_radius": 0.002521886,
+      "envelope_distance": 0.200679854,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "LittleFinger3_L_end",
+      "parent": "LittleFinger3_L",
+      "head": [
+        0.59969449,
+        0.026613858,
+        1.292775393
+      ],
+      "tail": [
+        0.612722456,
+        0.022632189,
+        1.291624069
+      ],
+      "matrix_local": [
+        [
+          -0.018164307,
+          0.952935934,
+          0.302627206,
+          0.59969449
+        ],
+        [
+          -0.33212474,
+          -0.291240782,
+          0.897146583,
+          0.026613858
+        ],
+        [
+          0.943060458,
+          -0.084214009,
+          0.321783781,
+          1.292775393
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.0136714,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.002521886,
+      "tail_radius": 0.795978963,
+      "envelope_distance": 3.979888678,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Breast1_R",
+      "parent": "Chest",
+      "head": [
+        -0.052928269,
+        -0.053130947,
+        1.29739356
+      ],
+      "tail": [
+        -0.063462362,
+        -0.126328051,
+        1.301355481
+      ],
+      "matrix_local": [
+        [
+          -0.22808145,
+          -0.142242596,
+          0.96319592,
+          -0.052928273
+        ],
+        [
+          0.085321277,
+          -0.988385379,
+          -0.125758559,
+          -0.053130951
+        ],
+        [
+          0.969896555,
+          0.053497866,
+          0.237568587,
+          1.29739356
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.074057266,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000069,
+      "tail_radius": 0.100000069,
+      "envelope_distance": 0.25000003,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Breast1_L",
+      "parent": "Chest",
+      "head": [
+        0.052928269,
+        -0.053130947,
+        1.29739356
+      ],
+      "tail": [
+        0.063462362,
+        -0.126328051,
+        1.301355481
+      ],
+      "matrix_local": [
+        [
+          -0.228081331,
+          0.142242521,
+          -0.96319586,
+          0.052928265
+        ],
+        [
+          -0.085321456,
+          -0.98838532,
+          -0.125758514,
+          -0.053130955
+        ],
+        [
+          -0.969896495,
+          0.053498089,
+          0.237568498,
+          1.29739356
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.074057266,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000069,
+      "tail_radius": 0.100000069,
+      "envelope_distance": 0.25000003,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right leg",
+      "parent": "Hips",
+      "head": [
+        -0.079977036,
+        -0.022903185,
+        0.936752379
+      ],
+      "tail": [
+        -0.111908212,
+        -0.044859204,
+        0.550980449
+      ],
+      "matrix_local": [
+        [
+          0.996308267,
+          -0.082357697,
+          0.024875579,
+          -0.079977036
+        ],
+        [
+          -0.029621748,
+          -0.056629516,
+          0.997964382,
+          -0.022903185
+        ],
+        [
+          -0.080782764,
+          -0.994992554,
+          -0.058856241,
+          0.936752379
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.387713343,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100524254,
+      "tail_radius": 0.050264813,
+      "envelope_distance": 0.252225518,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right knee",
+      "parent": "Right leg",
+      "head": [
+        -0.113706872,
+        -0.039834306,
+        0.55116415
+      ],
+      "tail": [
+        -0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "matrix_local": [
+        [
+          0.995527446,
+          -0.092120238,
+          0.021691527,
+          -0.113706872
+        ],
+        [
+          -0.014432641,
+          0.078996137,
+          0.996779144,
+          -0.039834306
+        ],
+        [
+          -0.09353812,
+          -0.992609382,
+          0.077313751,
+          0.55116415
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.493816465,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.119728006,
+      "tail_radius": 0.077684939,
+      "envelope_distance": 0.297419786,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right ankle",
+      "parent": "Right knee",
+      "head": [
+        -0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "tail": [
+        -0.15919736,
+        -0.06385079,
+        0.022586562
+      ],
+      "matrix_local": [
+        [
+          1.000015736,
+          -2e-09,
+          -2.7716e-05,
+          -0.15919736
+        ],
+        [
+          -9.149e-06,
+          -0.853921413,
+          0.520418584,
+          -0.000824712
+        ],
+        [
+          -2.6957e-05,
+          -0.5204162,
+          -0.85391289,
+          0.060997307
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.073807806,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.077684939,
+      "tail_radius": 0.084702104,
+      "envelope_distance": 0.194212273,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right toe",
+      "parent": "Right ankle",
+      "head": [
+        -0.15919736,
+        -0.06385079,
+        0.022586562
+      ],
+      "tail": [
+        -0.159197405,
+        -0.123029456,
+        0.01645527
+      ],
+      "matrix_local": [
+        [
+          -1.000015736,
+          -7.51e-07,
+          3.178e-06,
+          -0.15919736
+        ],
+        [
+          2.3991e-05,
+          -0.99468416,
+          -0.103054225,
+          -0.063850775
+        ],
+        [
+          6.527e-06,
+          -0.103055745,
+          0.994675756,
+          0.022586528
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.05949492,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.084702104,
+      "tail_radius": 0.085749544,
+      "envelope_distance": 0.211755231,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Right toe_end",
+      "parent": "Right toe",
+      "head": [
+        -0.159197405,
+        -0.123029456,
+        0.01645527
+      ],
+      "tail": [
+        -0.15919745,
+        -0.183260337,
+        0.016637273
+      ],
+      "matrix_local": [
+        [
+          -1.000015736,
+          -7.42e-07,
+          4.044e-06,
+          -0.159197405
+        ],
+        [
+          2.4326e-05,
+          -1.000003815,
+          0.003024168,
+          -0.123029426
+        ],
+        [
+          7.331e-06,
+          0.003021762,
+          0.999995589,
+          0.016455235
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.06023065,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.085749544,
+      "tail_radius": 0.042874772,
+      "envelope_distance": 0.214373752,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left leg",
+      "parent": "Hips",
+      "head": [
+        0.079977036,
+        -0.022903185,
+        0.936752379
+      ],
+      "tail": [
+        0.111908212,
+        -0.044859204,
+        0.550980449
+      ],
+      "matrix_local": [
+        [
+          0.996308386,
+          0.08235769,
+          -0.024875613,
+          0.079977036
+        ],
+        [
+          0.02962205,
+          -0.056629524,
+          0.997964442,
+          -0.022903185
+        ],
+        [
+          0.080782756,
+          -0.994992614,
+          -0.058856241,
+          0.936752379
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.387713343,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100524254,
+      "tail_radius": 0.050264813,
+      "envelope_distance": 0.251310647,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left knee",
+      "parent": "Left leg",
+      "head": [
+        0.113706872,
+        -0.039834306,
+        0.55116415
+      ],
+      "tail": [
+        0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "matrix_local": [
+        [
+          0.995527565,
+          0.092120253,
+          -0.021691531,
+          0.113706872
+        ],
+        [
+          0.014432909,
+          0.078996137,
+          0.996779203,
+          -0.039834306
+        ],
+        [
+          0.093538135,
+          -0.992609441,
+          0.077313766,
+          0.55116415
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.493816376,
+      "use_connect": false,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.119728006,
+      "tail_radius": 0.077684939,
+      "envelope_distance": 0.299320132,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left ankle",
+      "parent": "Left knee",
+      "head": [
+        0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "tail": [
+        0.15919736,
+        -0.06385079,
+        0.022586562
+      ],
+      "matrix_local": [
+        [
+          1.000015855,
+          -2e-09,
+          2.7707e-05,
+          0.15919736
+        ],
+        [
+          9.418e-06,
+          -0.853921533,
+          0.520418584,
+          -0.00082472
+        ],
+        [
+          2.6957e-05,
+          -0.5204162,
+          -0.85391295,
+          0.060997367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.073807806,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.077684939,
+      "tail_radius": 0.084702104,
+      "envelope_distance": 0.194212273,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left toe",
+      "parent": "Left ankle",
+      "head": [
+        0.15919736,
+        -0.06385079,
+        0.022586562
+      ],
+      "tail": [
+        0.159197405,
+        -0.123029456,
+        0.01645527
+      ],
+      "matrix_local": [
+        [
+          -1.000015855,
+          7.51e-07,
+          -3.168e-06,
+          0.15919736
+        ],
+        [
+          -2.4259e-05,
+          -0.994684935,
+          -0.103054225,
+          -0.063850798
+        ],
+        [
+          -6.527e-06,
+          -0.103055775,
+          0.994675756,
+          0.022586588
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.059494905,
+      "use_connect": true,
+      "use_deform": true,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.084702104,
+      "tail_radius": 0.085749544,
+      "envelope_distance": 0.211755231,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "Left toe_end",
+      "parent": "Left toe",
+      "head": [
+        0.159197405,
+        -0.123029456,
+        0.01645527
+      ],
+      "tail": [
+        0.15919745,
+        -0.183260337,
+        0.016637273
+      ],
+      "matrix_local": [
+        [
+          -1.000015855,
+          7.42e-07,
+          -4.044e-06,
+          0.159197405
+        ],
+        [
+          -2.4592e-05,
+          -1.00000453,
+          0.00302428,
+          -0.123029485
+        ],
+        [
+          -7.341e-06,
+          0.003021762,
+          0.999995589,
+          0.016455295
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.060230609,
+      "use_connect": true,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.085749544,
+      "tail_radius": 0.042874772,
+      "envelope_distance": 0.214373752,
+      "envelope_weight": 1.0,
+      "collections": [],
+      "custom_properties": {}
+    },
+    {
+      "name": "IK_Hand_R",
+      "parent": "IK_Root",
+      "head": [
+        -0.516844511,
+        0.008998815,
+        1.297919869
+      ],
+      "tail": [
+        -0.635842919,
+        -0.004338006,
+        1.290077567
+      ],
+      "matrix_local": [
+        [
+          0.117629029,
+          -0.99165374,
+          -0.052787378,
+          -0.516844511
+        ],
+        [
+          -0.572360992,
+          -0.111140206,
+          0.812435031,
+          0.008998811
+        ],
+        [
+          -0.811521053,
+          -0.065352544,
+          -0.580657184,
+          1.297919869
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.119999975,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.029702991,
+      "tail_radius": 0.011881197,
+      "envelope_distance": 0.029702991,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "IK_Hand_L",
+      "parent": "IK_Root",
+      "head": [
+        0.516844511,
+        0.008998815,
+        1.297919869
+      ],
+      "tail": [
+        0.635842919,
+        -0.004338006,
+        1.290077567
+      ],
+      "matrix_local": [
+        [
+          0.117629029,
+          0.99165374,
+          0.052787378,
+          0.516844511
+        ],
+        [
+          0.572360992,
+          -0.111140206,
+          0.812435031,
+          0.008998811
+        ],
+        [
+          0.811521053,
+          -0.065352544,
+          -0.580657184,
+          1.297919869
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.119999975,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.029702991,
+      "tail_radius": 0.011881197,
+      "envelope_distance": 0.029702991,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "IK_Foot_R",
+      "parent": "IK_Root",
+      "head": [
+        -0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "tail": [
+        -0.15919736,
+        -0.128911987,
+        -0.017064508
+      ],
+      "matrix_local": [
+        [
+          0.999835849,
+          0.0,
+          0.018117065,
+          -0.15919736
+        ],
+        [
+          -0.009428344,
+          -0.853915036,
+          0.520326912,
+          -0.00082472
+        ],
+        [
+          0.015470435,
+          -0.520412326,
+          -0.853774905,
+          0.060997341
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.150000006,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.036679972,
+      "tail_radius": 0.014671989,
+      "envelope_distance": 0.036679972,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "IK_Foot_L",
+      "parent": "IK_Root",
+      "head": [
+        0.15919736,
+        -0.000824718,
+        0.060997341
+      ],
+      "tail": [
+        0.15919736,
+        -0.128911987,
+        -0.017064508
+      ],
+      "matrix_local": [
+        [
+          0.999835849,
+          0.0,
+          -0.018117065,
+          0.15919736
+        ],
+        [
+          0.009428344,
+          -0.853915036,
+          0.520326912,
+          -0.00082472
+        ],
+        [
+          -0.015470435,
+          -0.520412326,
+          -0.853774905,
+          0.060997341
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.150000006,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.036679972,
+      "tail_radius": 0.014671989,
+      "envelope_distance": 0.036679972,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "Pole_Elbow_R",
+      "parent": "IK_Root",
+      "head": [
+        -0.29886052,
+        -0.353550881,
+        1.317348361
+      ],
+      "tail": [
+        -0.29886052,
+        -0.353550881,
+        1.427348375
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          0.0,
+          -8.7e-08,
+          -0.29886052
+        ],
+        [
+          -8.7e-08,
+          0.0,
+          -1.0,
+          -0.353550881
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          1.317348361
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.110000014,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "Pole_Elbow_L",
+      "parent": "IK_Root",
+      "head": [
+        0.29886052,
+        -0.353550881,
+        1.317348361
+      ],
+      "tail": [
+        0.29886052,
+        -0.353550881,
+        1.427348375
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          0.0,
+          -8.7e-08,
+          0.29886052
+        ],
+        [
+          -8.7e-08,
+          0.0,
+          -1.0,
+          -0.353550881
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          1.317348361
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.110000014,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "Pole_Knee_R",
+      "parent": "IK_Root",
+      "head": [
+        -0.111908212,
+        -0.494859189,
+        0.550980449
+      ],
+      "tail": [
+        -0.111908212,
+        -0.494859189,
+        0.660980463
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          0.0,
+          -8.7e-08,
+          -0.111908212
+        ],
+        [
+          -8.7e-08,
+          0.0,
+          -1.0,
+          -0.494859159
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.550980449
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.110000014,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    },
+    {
+      "name": "Pole_Knee_L",
+      "parent": "IK_Root",
+      "head": [
+        0.111908212,
+        -0.494859189,
+        0.550980449
+      ],
+      "tail": [
+        0.111908212,
+        -0.494859189,
+        0.660980463
+      ],
+      "matrix_local": [
+        [
+          1.0,
+          0.0,
+          -8.7e-08,
+          0.111908212
+        ],
+        [
+          -8.7e-08,
+          0.0,
+          -1.0,
+          -0.494859159
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.550980449
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "length": 0.110000014,
+      "use_connect": false,
+      "use_deform": false,
+      "use_inherit_rotation": true,
+      "inherit_scale": "FULL",
+      "head_radius": 0.100000001,
+      "tail_radius": 0.050000001,
+      "envelope_distance": 0.25,
+      "envelope_weight": 1.0,
+      "collections": [
+        "IK Controls"
+      ],
+      "custom_properties": {}
+    }
+  ],
+  "pose": [
+    {
+      "bone": "Hips",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Spine",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "UpperBody1",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Chest",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Neck",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Head",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Right elbow",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Arm_IK_R",
+          "type": "IK",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Hand_R",
+          "pole_subtarget": "Pole_Elbow_R",
+          "chain_count": 2,
+          "use_tail": true,
+          "iterations": 100,
+          "use_stretch": false,
+          "target_space": "WORLD",
+          "owner_space": "WORLD",
+          "target": "$SELF",
+          "pole_target": "$SELF",
+          "pole_angle": -2.526364088
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Right wrist",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Hand_Rotation_R",
+          "type": "COPY_ROTATION",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Hand_R",
+          "mix_mode": "REPLACE",
+          "target_space": "LOCAL",
+          "owner_space": "LOCAL",
+          "target": "$SELF"
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Left elbow",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Arm_IK_L",
+          "type": "IK",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Hand_L",
+          "pole_subtarget": "Pole_Elbow_L",
+          "chain_count": 2,
+          "use_tail": true,
+          "iterations": 100,
+          "use_stretch": false,
+          "target_space": "WORLD",
+          "owner_space": "WORLD",
+          "target": "$SELF",
+          "pole_target": "$SELF",
+          "pole_angle": -0.615228534
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Left wrist",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Hand_Rotation_L",
+          "type": "COPY_ROTATION",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Hand_L",
+          "mix_mode": "REPLACE",
+          "target_space": "LOCAL",
+          "owner_space": "LOCAL",
+          "target": "$SELF"
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Right knee",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Leg_IK_R",
+          "type": "IK",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Foot_R",
+          "pole_subtarget": "Pole_Knee_R",
+          "chain_count": 2,
+          "use_tail": true,
+          "iterations": 100,
+          "use_stretch": false,
+          "target_space": "WORLD",
+          "owner_space": "WORLD",
+          "target": "$SELF",
+          "pole_target": "$SELF",
+          "pole_angle": -1.533708096
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Right ankle",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Foot_Rotation_R",
+          "type": "COPY_ROTATION",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Foot_R",
+          "mix_mode": "REPLACE",
+          "target_space": "LOCAL",
+          "owner_space": "LOCAL",
+          "target": "$SELF"
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Right toe",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Left knee",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Leg_IK_L",
+          "type": "IK",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Foot_L",
+          "pole_subtarget": "Pole_Knee_L",
+          "chain_count": 2,
+          "use_tail": true,
+          "iterations": 100,
+          "use_stretch": false,
+          "target_space": "WORLD",
+          "owner_space": "WORLD",
+          "target": "$SELF",
+          "pole_target": "$SELF",
+          "pole_angle": -1.607884526
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Left ankle",
+      "rotation_mode": "QUATERNION",
+      "constraints": [
+        {
+          "name": "Foot_Rotation_L",
+          "type": "COPY_ROTATION",
+          "influence": 1.0,
+          "mute": false,
+          "subtarget": "IK_Foot_L",
+          "mix_mode": "REPLACE",
+          "target_space": "LOCAL",
+          "owner_space": "LOCAL",
+          "target": "$SELF"
+        }
+      ],
+      "custom_properties": {}
+    },
+    {
+      "bone": "Left toe",
+      "rotation_mode": "XYZ",
+      "constraints": [],
+      "custom_properties": {}
+    }
+  ],
+  "counts": {
+    "source_bones": 94,
+    "retained_bones": 76,
+    "excluded_bones": 18,
+    "deform_bones": 54,
+    "control_bones": 22
+  }
+}

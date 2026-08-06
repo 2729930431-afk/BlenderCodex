@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanoid Rigging"
+  short_description: "Extract, fit, and bind standardized humanoid rigs."
+  default_prompt: "Use $humanoid-rigging to analyze this character mesh, fit the standard rig, and prepare a safe binding plan."

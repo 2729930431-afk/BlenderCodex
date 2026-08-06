@@ -47,6 +47,12 @@ Apply these rules to every hard-surface mesh creation, edit, cleanup, or topolog
 
 - Place edges on real form changes: boundaries, openings, corners, creases, bevel limits, profile changes, and structural seams.
 - For rectangular openings on planar walls, use horizontal sill and head bands plus vertical jamb and bay strips. Carry the same opening coordinates through exterior and interior wall faces.
+- Keep opening topology facade-local. A jamb line stops at the sill/head band that needs it, and a sill/head line stops at the relevant wall boundary; do not project a building-wide Cartesian grid through unrelated facades, floors, slabs, ceilings, roofs, or blank wall regions.
+- Clean both wall sides and the reveals as one thickness-aware system. Reuse exact sill, head, and jamb coordinates on the exterior face, interior face, and connecting reveal faces so the opening has no offset or hidden transition.
+- Prefer a minimal purposeful rectangular partition: first form continuous horizontal sill/head bands, then form vertical jamb/bay strips only inside the affected height interval. On blank planar regions, dissolve only subdivisions that neither complete a structural elevation loop nor improve regular quad flow.
+- Preserve floor, slab, sill, head, and wall-base elevation rings when they wrap a corner or continue coherently through adjoining exterior, interior, gable, reveal, or thickness faces. Such rings are structural topology, not a forbidden global grid.
+- Do not dissolve an edge solely because its two coplanar faces can form one rectangle. Keep a user-authored split when it closes a purposeful loop, avoids an oversized n-gon, or maintains editable quad bands; remove it only when it is isolated and featureless.
+- When simplifying an existing mesh, merge only coplanar neighbors whose combined boundary remains a simple feature-aligned rectangle or rectilinear n-gon. Reject any merge that would need a bridge diagonal, self-touching loop, face hole, T-junction, or non-manifold edge.
 - Prefer quads for regular strips and simple planar rectilinear n-gons for larger uninterrupted bands. N-gons must be planar, non-self-intersecting, and free of hidden duplicate edges.
 - Remove Boolean-generated diagonals, triangle fans, skinny slivers, redundant coplanar edges, overlapping faces, and unnecessary poles when they do not describe the shape.
 - Do not force orthogonal topology onto curved, sloped, triangular, chamfered, or intentionally irregular forms. Their edges must follow the real feature direction instead.

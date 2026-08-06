@@ -1,6 +1,6 @@
 {
   "name": "blendercodex",
-  "version": "0.1.0+codex.20260805201007",
+  "version": "0.1.0+codex.20260806153638",
   "description": "Generate and update Blender .blend deliverables through local background bpy execution, with optional temporary live RPC control.",
   "author": {
     "name": "XT"
@@ -29,6 +29,8 @@
       "Temporary .blend comparison",
       "Floor-aware internal structure generation",
       "User-edit learning loop",
+      "Humanoid skeleton templates and gated rig fitting",
+      "Heroine-calibrated landmarks and duplicate-safe binding previews",
       "Confirmed window-opening workflow",
       "Hard-surface topology standard",
       "Modeling deliverables"
@@ -37,6 +39,7 @@
       "Use $blendercodex to create a new .blend project from my reference.",
       "Use $blendercodex to edit my existing Blender model through the temporary bridge.",
       "Use $model-learning to analyze my manual model edits and update BlenderCodex rules.",
+      "Use $humanoid-rigging to recognize a character mesh, confirm joint markers, and fit the standard humanoid skeleton.",
       "Use $blendercodex to mark proposed windows with empties, wait for my confirmation, and then cut them with standardized hard-surface topology."
     ]
   }

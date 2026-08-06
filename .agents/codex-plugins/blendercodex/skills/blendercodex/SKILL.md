@@ -111,6 +111,8 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - For every hard-surface mesh creation or edit, read `references/hard-surface-topology-and-openings.md` before changing geometry. This applies to buildings, architectural shells, props, machines, vehicles, furniture, and any mesh whose form depends on deliberate planar, sharp, beveled, or manufactured surfaces.
 - Preserve approved shapes, object transforms, opening positions, meaningful seams, sharp edges, material assignments, and unrelated user edits. Capture a baseline signature for protected geometry before a localized topology rewrite.
 - Align edge flow to real features. Rectangular wall openings use continuous sill/head bands and vertical jamb/bay strips on both exterior and interior surfaces; do not leave Boolean diagonals or an unstandardized inner wall after cleaning the outer wall.
+- Localize those bands to the wall and height interval that owns the feature. Never solve a multi-opening building with a global Cartesian grid that propagates every jamb, sill, or head coordinate across unrelated facades, floors, slabs, ceilings, or blank wall areas.
+- Interpret minimal topology as the fewest purposeful feature loops, not the fewest faces. Preserve structural elevation rings and user-authored quad loops that wrap adjoining exterior, interior, gable, reveal, or slab faces, even when a coplanar rectangle merge is technically possible.
 - Prefer quads and simple planar rectilinear n-gons. Do not introduce convenience diagonals, triangle fans, overlapping faces, duplicate coincident edges, wire edges, degenerate faces, or avoidable poles. Curved, sloped, triangular, and beveled features may use non-orthogonal edges where the shape genuinely requires them.
 - For substantial topology rewrites, work on an object-mode mesh copy or detached BMesh, validate it, then atomically assign it to the object. Avoid destructive in-place Edit Mode BMesh rewrites combined with a manual undo push and immediate save.
 - Rebuild and verify `UV_4m_world_standard` after topology changes. Make it active/render and retain one UV unit per four world units.
@@ -144,6 +146,13 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - For custom mesh objects, create real vertices/faces rather than overlay-only curves when the form is structural.
 - Run UV unwrap logic for mesh objects before saving.
 - Save the file with `bpy.ops.wm.save_as_mainfile(filepath=...)`.
+
+## Humanoid Rigging
+
+- When the user asks to recognize a humanoid mesh, extract or import a standard skeleton, fit anatomical joints, create an armature, bind weights, skin a character, or prepare IK controls, use the `humanoid-rigging` skill with this skill.
+- Prefer the gated `blendercodex_humanoid_analyze`, `blendercodex_humanoid_fit_standard`, `blendercodex_humanoid_validate`, and `blendercodex_humanoid_bind_preview` tools for this workflow.
+- Keep target inspection read-only until `humanoid-rigging` has created semantic joint markers and the user has explicitly confirmed them. Require a separate approval before parenting meshes or writing weights.
+- Use the authoritative copied Armature asset from `humanoid-rigging/assets/female-humanoid-v1.blend`; use its JSON only as metadata, and do not infer or restore excluded hair bones.
 
 ## Learning From User Edits
 

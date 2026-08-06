@@ -28,6 +28,13 @@ assert.match(skill, /object-mode mesh copy or detached BMesh/, "substantial rewr
 assert.match(skill, /Save and reopen the serialized `.blend`/, "substantial rewrites are reload-verified");
 
 assert.match(rules, /horizontal sill and head bands plus vertical jamb and bay strips/i, "opening topology follows feature bands");
+assert.match(rules, /facade-local/i, "opening bands remain local to their owning facade");
+assert.match(rules, /do not project a building-wide Cartesian grid/i, "global cross-building topology grids are forbidden");
+assert.match(rules, /first form continuous horizontal sill\/head bands, then form vertical jamb\/bay strips/i, "cleanup order preserves the learned band pattern");
+assert.match(rules, /Reject any merge that would need a bridge diagonal/i, "coplanar cleanup cannot introduce bridge diagonals");
+assert.match(rules, /structural elevation loop/i, "purposeful elevation loops survive coplanar cleanup");
+assert.match(rules, /Do not dissolve an edge solely because its two coplanar faces can form one rectangle/i, "fewest faces is not the topology objective");
+assert.match(rules, /oversized n-gon/i, "user-authored quad bands may replace oversized n-gons");
 assert.match(rules, /exterior and interior wall faces/i, "both wall sides are standardized");
 assert.match(rules, /Do not force orthogonal topology onto curved, sloped, triangular/i, "shape-required diagonals remain allowed");
 assert.match(rules, /zero wire edges, zero degenerate faces/i, "mesh health checks are explicit");
@@ -48,6 +55,6 @@ assert.ok(
   manifest.interface.capabilities.includes("Hard-surface topology standard"),
   "manifest advertises the hard-surface topology standard",
 );
-assert.match(manifest.version, /^0\.1\.0\+codex\.20260805\d{6}$/, "plugin cachebuster was updated");
+assert.match(manifest.version, /^0\.1\.0\+codex\.\d{14}$/, "plugin cachebuster uses a timestamp");
 
 console.log(JSON.stringify({ ok: true, checked: "window and hard-surface workflow" }, null, 2));

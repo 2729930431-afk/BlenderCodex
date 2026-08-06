@@ -8,6 +8,13 @@ const readline = require("readline");
 
 const pluginRoot = path.resolve(__dirname, "..");
 const bridgeScript = path.join(pluginRoot, "scripts", "blendercodex_bridge.py");
+const humanoidRuntimeScript = path.join(
+  pluginRoot,
+  "skills",
+  "humanoid-rigging",
+  "scripts",
+  "humanoid_rig_runtime.py",
+);
 function codexHome() {
   return process.env.CODEX_HOME || path.join(os.homedir(), ".codex");
 }
@@ -447,6 +454,24 @@ RESULT = {
 `;
 }
 
+function humanoidRuntimeCode(action, args) {
+  if (!fs.existsSync(humanoidRuntimeScript)) {
+    throw new Error(`Humanoid rig runtime not found: ${humanoidRuntimeScript}`);
+  }
+  const runtimeArgs = { ...args };
+  delete runtimeArgs.sessionName;
+  delete runtimeArgs.sessionFile;
+  delete runtimeArgs.timeoutMs;
+  return [
+    "import json as _blendercodex_json",
+    `ACTION = ${JSON.stringify(String(action))}`,
+    `PARAMS = _blendercodex_json.loads(${JSON.stringify(JSON.stringify(runtimeArgs))})`,
+    `__file__ = ${JSON.stringify(humanoidRuntimeScript)}`,
+    "with open(__file__, 'rb') as _blendercodex_runtime_file:",
+    "    exec(compile(_blendercodex_runtime_file.read(), __file__, 'exec'), globals(), globals())",
+  ].join("\n");
+}
+
 function toolResult(text, isError = false) {
   return {
     content: [{ type: "text", text: typeof text === "string" ? text : JSON.stringify(text, null, 2) }],
@@ -550,6 +575,82 @@ const tools = [
       required: ["target", "keep"],
     },
   },
+  {
+    name: "blendercodex_humanoid_analyze",
+    description: "Analyze explicit or selected humanoid mesh objects, classify pose/confidence, and create semantic joint empties only. This does not create an armature, bind meshes, or save the file.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        targetObjects: { type: "array", items: { type: "string" }, description: "Explicit mesh object names. If omitted, selected mesh objects are used." },
+        targetCollection: { type: "string", description: "Alternative collection whose recursive mesh objects are the target." },
+        excludeObjects: { type: "array", items: { type: "string" }, description: "Mesh names to exclude, such as hair or accessories." },
+        armatureHint: { type: "string", description: "Optional existing armature used as high-confidence landmark evidence." },
+        useExistingRigEvidence: { type: "boolean", description: "Use a compatible existing rig as landmark evidence. Defaults to true." },
+        markerCollection: { type: "string", description: "Pending marker collection name." },
+        createMarkers: { type: "boolean", description: "Create marker empties. Defaults to true." },
+        replaceMarkers: { type: "boolean", description: "Explicitly discard and regenerate semantic markers. Defaults to false to preserve user edits." },
+        includeFingers: { type: "boolean", description: "Create finger markers only when an existing compatible rig provides them." },
+        maxPoints: { type: "number", description: "Maximum evaluated geometry samples." },
+        priorPath: { type: "string", description: "Optional override for the heroine body-prior JSON." },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+    },
+  },
+  {
+    name: "blendercodex_humanoid_fit_standard",
+    description: "After explicit marker approval, append the authoritative female humanoid Armature asset and fit it to the live semantic markers. This does not bind meshes or save the file.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        confirmed: { type: "boolean", description: "Must be true only after the user explicitly confirms the current marker positions." },
+        markerCollection: { type: "string" },
+        previewName: { type: "string" },
+        replacePreview: { type: "boolean" },
+        allowLowConfidence: { type: "boolean", description: "Explicit override after manual marker review." },
+        assetPath: { type: "string" },
+        priorPath: { type: "string" },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+      required: ["confirmed"],
+    },
+  },
+  {
+    name: "blendercodex_humanoid_validate",
+    description: "Validate a fitted humanoid preview against the authoritative bone set, marker positions, constraints, excluded hair bones, and the unchanged target signature.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        rigObject: { type: "string" },
+        markerCollection: { type: "string" },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+    },
+  },
+  {
+    name: "blendercodex_humanoid_bind_preview",
+    description: "After separate binding approval, create duplicate-safe skinned mesh previews using compatible existing groups or Blender automatic weights. Originals are not modified and the file is not saved.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        confirmed: { type: "boolean", description: "Must be true only after the user explicitly confirms the fitted armature." },
+        rigObject: { type: "string" },
+        markerCollection: { type: "string" },
+        method: { type: "string", enum: ["existing_groups", "automatic"], description: "Weight source for the duplicate preview." },
+        previewCollection: { type: "string" },
+        replacePreview: { type: "boolean" },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+      required: ["confirmed"],
+    },
+  },
 ];
 
 async function callTool(name, args = {}) {
@@ -587,6 +688,16 @@ async function callTool(name, args = {}) {
       return toolResult({ prune: result, save });
     }
     return toolResult(result);
+  }
+  const humanoidActions = {
+    blendercodex_humanoid_analyze: "analyze",
+    blendercodex_humanoid_fit_standard: "fit_standard",
+    blendercodex_humanoid_validate: "validate",
+    blendercodex_humanoid_bind_preview: "bind_preview",
+  };
+  if (humanoidActions[name]) {
+    const code = humanoidRuntimeCode(humanoidActions[name], args);
+    return toolResult(await callBridge("run_python", { code }, options));
   }
   return toolResult(`Unknown tool: ${name}`, true);
 }
@@ -668,5 +779,6 @@ if (require.main === module) {
 }
 
 module.exports = {
+  humanoidRuntimeCode,
   shouldUseKeepAlive,
 };
