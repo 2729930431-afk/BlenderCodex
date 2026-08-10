@@ -22,8 +22,9 @@ Place the building root object's origin at the roof-plan symmetry center in X/Y 
 3. Relocate the building origin without moving geometry.
    - Derive the mirror plane from the roof base's world-space plan bounds or another verified roof-center reference.
    - Put the building origin at that X/Y center and the building ground Z.
-   - Transform the building mesh by the inverse origin delta and update direct-child parent inverses so all protected world matrices remain unchanged.
-   - Do not reset a roof or tile child's world transform merely to make local values look cleaner.
+   - Transform the building mesh by the inverse origin delta while preserving every protected world matrix.
+   - Then follow `fbx-unity-hierarchy.md`: normalize the entire ordinary object hierarchy top-down so every parented export object uses an identity `matrix_parent_inverse` and a real local transform. Do not rely on compensating parent inverses to preserve placement.
+   - Do not reset a roof or tile child's world transform merely to make local values look cleaner. Derive its local matrix from the saved world matrix and the normalized parent world matrix.
 
 4. Consolidate the slopes.
    - Keep the authoritative pan-tile and cover-tile objects with their unapplied Array modifiers.
@@ -43,6 +44,7 @@ Place the building root object's origin at the roof-plan symmetry center in X/Y 
 - The modifier order is `Array ... -> Mirror`; Arrays and Mirror remain unapplied.
 - The Mirror uses the owning building root, enables exactly the required axis, and produces symmetric evaluated bounds about that root.
 - Each converted roof keeps one pan-tile source, one cover-tile source, and independent ridge tiles as direct children.
+- Every ordinary parented export object has an identity `matrix_parent_inverse`; an FBX/Unity round trip keeps roof-owned children at unit local scale without alternating `0.01` compensation.
 - Materials and `UV_4m_world_standard` remain active/render with unchanged world density.
 - Raw source meshes have zero wire edges and zero degenerate faces; boundary and non-manifold counts do not worsen.
 - Save and reopen the `.blend`, then repeat the hierarchy, origin, modifier, symmetry, UV, and mesh-health checks.

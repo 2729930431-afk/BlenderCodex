@@ -13,6 +13,8 @@ const packet = read("skills/model-learning/references/learning-packet.md");
 const blendercodexSkill = read("skills/blendercodex/SKILL.md");
 const standards = read("skills/blendercodex/references/modeling-standards.md");
 const roofMirroring = read("skills/blendercodex/references/roof-origin-mirroring.md");
+const fbxHierarchy = read("skills/blendercodex/references/fbx-unity-hierarchy.md");
+const fbxLearning = read("skills/model-learning/references/verified-fbx-parenting.md");
 const manifest = JSON.parse(read(".codex-plugin/plugin.json"));
 
 assert.match(skill, /^---\nname: model-learning\n/m, "model-learning frontmatter is present");
@@ -72,6 +74,29 @@ assert.match(
   /Save and reopen the `.blend`/,
   "serialized roof conversion is reload-verified",
 );
+assert.match(
+  blendercodexSkill,
+  /FBX and Unity Hierarchy Safety/,
+  "blendercodex routes FBX hierarchy edits through the safety workflow",
+);
+assert.match(
+  fbxHierarchy,
+  /matrix_parent_inverse = Matrix\.Identity\(4\)/,
+  "FBX hierarchy workflow normalizes Blender parent inverses",
+);
+assert.match(
+  fbxHierarchy,
+  /apply_scale_options='FBX_SCALE_NONE'/,
+  "FBX hierarchy workflow pins the export scale policy",
+);
+assert.match(
+  fbxHierarchy,
+  /Representative nested roof-owned objects should have unit local scale/,
+  "Unity round-trip acceptance checks nested local scale",
+);
+assert.match(fbxLearning, /observed_problem/, "verified FBX learning records the problem");
+assert.match(fbxLearning, /future_rule/, "verified FBX learning records the promoted rule");
+assert.match(fbxLearning, /scoped_skill_rule/, "verified FBX learning is correctly scoped");
 assert.match(standards, /triangular gable wall faces/i, "modeling standards include gable closure detail");
 assert.ok(
   manifest.interface.capabilities.includes("User-edit learning loop"),

@@ -138,6 +138,13 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - Assign basic color materials so the user can later replace materials directly.
 - UV unwrap every mesh with stable proportions and no obvious stretching.
 
+## FBX and Unity Hierarchy Safety
+
+- For any FBX/Unity task that reparents objects or moves origins inside an export hierarchy, read `references/fbx-unity-hierarchy.md` before saving or exporting.
+- Do not leave ordinary export objects dependent on non-identity `matrix_parent_inverse` compensation. Preserve each world matrix, normalize parented objects top-down to an identity parent inverse plus a real local `matrix_basis`, and verify world matrices and evaluated bounds afterward.
+- Restore intentional ownership before export. A roof stays under its building, and its tile arrays, ridge tiles, and trims stay under that roof; a temporarily unparented object is not an acceptable workaround for transform problems.
+- Round-trip the exported FBX and inspect it in the target Unity project. Validate hierarchy, representative local transforms at every nesting depth, and world-space appearance instead of accepting export success alone.
+
 ## Generated Code Requirements
 
 - Clear the default scene at the start.
@@ -174,3 +181,4 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - `references/script-contract.md`: load before writing generated Blender bpy code.
 - `references/hard-surface-topology-and-openings.md`: mandatory rules for window approval gates and every hard-surface mesh operation.
 - `references/roof-origin-mirroring.md`: mandatory workflow when creating or converting symmetric two-slope tiled roofs to a single editable slope plus building-origin Mirror system.
+- `references/fbx-unity-hierarchy.md`: mandatory transform-normalization and round-trip checks for parent/origin edits in FBX/Unity export hierarchies.
