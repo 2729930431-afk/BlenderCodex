@@ -12,6 +12,7 @@ const skill = read("skills/model-learning/SKILL.md");
 const packet = read("skills/model-learning/references/learning-packet.md");
 const blendercodexSkill = read("skills/blendercodex/SKILL.md");
 const standards = read("skills/blendercodex/references/modeling-standards.md");
+const roofMirroring = read("skills/blendercodex/references/roof-origin-mirroring.md");
 const manifest = JSON.parse(read(".codex-plugin/plugin.json"));
 
 assert.match(skill, /^---\nname: model-learning\n/m, "model-learning frontmatter is present");
@@ -36,6 +37,41 @@ assert.match(
   "blendercodex skill promotes durable lessons into rules",
 );
 assert.match(blendercodexSkill, /gabled house roofs/i, "gabled roof default is promoted");
+assert.match(
+  blendercodexSkill,
+  /For every repeated brick or roof-tile element, use unapplied Blender Array modifiers/,
+  "brick and roof-tile repetition keeps editable Array modifiers",
+);
+assert.match(
+  blendercodexSkill,
+  /parent them directly to the owning roof object/,
+  "generated roof parts are direct children of the owning roof",
+);
+assert.match(
+  blendercodexSkill,
+  /Do not create a dedicated one-roof collection/,
+  "generated roof systems do not create one-off collections",
+);
+assert.match(
+  blendercodexSkill,
+  /read `references\/roof-origin-mirroring\.md`/,
+  "symmetric tiled roofs route through the focused mirroring workflow",
+);
+assert.match(
+  roofMirroring,
+  /Place the building root object's origin at the roof-plan symmetry center/,
+  "building origin anchors the roof mirror plane",
+);
+assert.match(
+  roofMirroring,
+  /Add one Mirror modifier after all Array modifiers/,
+  "roof repetition is mirrored only after its editable arrays",
+);
+assert.match(
+  roofMirroring,
+  /Save and reopen the `.blend`/,
+  "serialized roof conversion is reload-verified",
+);
 assert.match(standards, /triangular gable wall faces/i, "modeling standards include gable closure detail");
 assert.ok(
   manifest.interface.capabilities.includes("User-edit learning loop"),

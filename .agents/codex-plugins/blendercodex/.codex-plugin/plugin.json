@@ -1,6 +1,6 @@
 {
   "name": "blendercodex",
-  "version": "0.1.0+codex.20260806153638",
+  "version": "0.1.0+codex.20260810132833",
   "description": "Generate and update Blender .blend deliverables through local background bpy execution, with optional temporary live RPC control.",
   "author": {
     "name": "XT"
