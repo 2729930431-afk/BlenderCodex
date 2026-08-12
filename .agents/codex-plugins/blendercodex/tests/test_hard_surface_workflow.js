@@ -23,6 +23,9 @@ assert.match(
 );
 assert.match(skill, /Treat marker transforms as authoritative/, "confirmed live markers are authoritative");
 assert.match(skill, /honor deleted markers as removed openings/, "deleted markers stay deleted");
+assert.match(skill, /usable cavity plus paired exterior\/interior wall faces/, "opening targets must be interior-ready");
+assert.match(skill, /coherent thickness-aware hollow shell/, "non-ready targets become hollow shells before cutting");
+assert.match(skill, /raw Boolean output as an intermediate at most/, "raw Boolean output is not delivery topology");
 assert.match(skill, /Mandatory Hard-Surface Topology Contract/, "hard-surface contract is mandatory");
 assert.match(skill, /object-mode mesh copy or detached BMesh/, "substantial rewrites use a stable copy transaction");
 assert.match(skill, /Save and reopen the serialized `.blend`/, "substantial rewrites are reload-verified");
@@ -36,9 +39,13 @@ assert.match(rules, /structural elevation loop/i, "purposeful elevation loops su
 assert.match(rules, /Do not dissolve an edge solely because its two coplanar faces can form one rectangle/i, "fewest faces is not the topology objective");
 assert.match(rules, /oversized n-gon/i, "user-authored quad bands may replace oversized n-gons");
 assert.match(rules, /exterior and interior wall faces/i, "both wall sides are standardized");
+assert.match(rules, /visually open hole is not acceptance evidence/i, "visible-only cuts do not pass validation");
+assert.match(rules, /diagonally bridges an opening corner/i, "facade bridge diagonals are explicitly rejected");
 assert.match(rules, /Do not force orthogonal topology onto curved, sloped, triangular/i, "shape-required diagonals remain allowed");
 assert.match(rules, /zero wire edges, zero degenerate faces/i, "mesh health checks are explicit");
-assert.match(rules, /boundary and non-manifold counts do not worsen/i, "topology health regression is checked");
+assert.match(rules, /classify boundary and non-manifold edges by source/i, "intentional thresholds are distinguished from mesh defects");
+assert.match(rules, /validated cavity and continuous inner wall surfaces/i, "shell readiness is validated before opening cuts");
+assert.match(rules, /through the full wall thickness/i, "openings connect exterior to the cavity");
 assert.match(rules, /UV_4m_world_standard/, "world-density UV standard remains mandatory");
 assert.match(rules, /saved `.blend` can be reopened/i, "serialized result is verified");
 

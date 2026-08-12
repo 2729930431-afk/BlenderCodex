@@ -99,13 +99,15 @@ Temporary live RPC rules:
 
 Apply this gate whenever the user asks to add, cut, create, arrange, move, or revise windows or comparable wall openings.
 
-1. Inspect the real building mesh, wall thickness, floor bands, existing doors/windows, facade rhythm, corners, and structural conflicts before proposing locations.
+1. Inspect the real building mesh, wall thickness, floor bands, existing doors/windows, facade rhythm, corners, and structural conflicts before proposing locations. Classify it as interior-ready only when the intended opening zones have a usable cavity plus paired exterior/interior wall faces; a closed solid, exterior-only sheet, single facade face, or disconnected panel is not interior-ready.
 2. Create or update semantic empty-object markers only. Put them in a pending-confirmation collection such as `窗位标记_待确认`; align each marker to its target wall and set its dimensions to the intended rough opening size. Give markers stable facade/floor names and opening metadata when practical.
    - Unless the user or binding design evidence specifies another size, use a `1.0 m` rough width and `2.0 m` rough height for every door and window. Store the same authoritative values in `blendercodex_opening_width` and `blendercodex_opening_height`; do not silently substitute a type-specific window size.
 3. Show or summarize the marker plan and wait for explicit user confirmation. Do not cut, boolean, delete, rebuild, or otherwise change the target wall mesh before confirmation.
 4. After confirmation, re-read the live marker collection. Treat marker transforms as authoritative: preserve user-moved markers, honor deleted markers as removed openings, and never recreate or reset them unless asked.
-5. Cut only the confirmed markers, then standardize the exterior face, interior face, and reveal topology together under the hard-surface contract. Keep members of the same window family equal in rough width and height unless the user explicitly defines multiple sizes.
-6. Keep the marker collection hidden or otherwise non-obstructive after validation, but preserve it when future revision context is useful.
+5. If the target is not interior-ready, first preserve the approved exterior while rebuilding it as a coherent thickness-aware hollow shell. Validate the usable cavity and continuous inner wall surfaces before cutting anything.
+6. Cut only the confirmed markers through the full wall thickness, then standardize the exterior face, interior face, and reveal topology together under the hard-surface contract. Keep members of the same window family equal in rough width and height unless the user explicitly defines multiple sizes.
+7. Treat raw Boolean output as an intermediate at most. Before delivery, rebuild the affected facade into facade-local sill/head bands and jamb/bay strips; do not leave Boolean diagonals, triangle fans, slivers, or opening coordinates propagated into adjacent blank walls, corners, floors, or roof caps.
+8. Keep the marker collection hidden or otherwise non-obstructive after validation, but preserve it when future revision context is useful.
 
 ## Mandatory Hard-Surface Topology Contract
 

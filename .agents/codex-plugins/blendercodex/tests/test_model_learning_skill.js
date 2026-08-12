@@ -18,6 +18,7 @@ const hardSurface = read("skills/blendercodex/references/hard-surface-topology-a
 const fbxHierarchy = read("skills/blendercodex/references/fbx-unity-hierarchy.md");
 const fbxLearning = read("skills/model-learning/references/verified-fbx-parenting.md");
 const tiledRoofLearning = read("skills/model-learning/references/verified-tiled-roof-and-openings.md");
+const hollowShellLearning = read("skills/model-learning/references/verified-hollow-shell-openings.md");
 const manifest = JSON.parse(read(".codex-plugin/plugin.json"));
 
 assert.match(skill, /^---\nname: model-learning\n/m, "model-learning frontmatter is present");
@@ -71,6 +72,10 @@ assert.match(blendercodexSkill, /rough width and `2\.0 m` rough height for every
 assert.match(hardSurface, /default rough opening for every door and window is `1\.0 m` wide by `2\.0 m` high/, "opening reference enforces the 1x2 default");
 assert.match(tiledRoofLearning, /observed_problem/, "verified tiled-roof learning records the prior failure");
 assert.match(tiledRoofLearning, /唐老三家屋顶_布尔原型1/, "verified learning records authoritative scene evidence");
+assert.match(hollowShellLearning, /observed_problem/, "verified hollow-shell learning records the prior failure");
+assert.match(hollowShellLearning, /唐老二主屋/, "verified hollow-shell learning records authoritative scene evidence");
+assert.match(hollowShellLearning, /Raw Boolean output is only an intermediate/i, "verified learning rejects raw Boolean delivery topology");
+assert.match(hollowShellLearning, /scoped_skill_rule/, "hollow-shell opening learning is correctly scoped");
 assert.match(
   roofMirroring,
   /Place the building root object's origin at the roof-plan symmetry center/,

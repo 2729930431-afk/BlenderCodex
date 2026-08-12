@@ -8,6 +8,7 @@ When the user requests windows or comparable wall openings:
 
 1. Inspect first.
    - Read the live or saved mesh, wall thickness, floor bands, current opening rows, doors, roof/slab conflicts, corners, and facade rhythm.
+   - Classify the target as interior-ready only when the intended opening zones have a real usable cavity behind them and paired exterior/interior wall faces. A closed solid, exterior-only sheet, single facade face, or disconnected panel is not interior-ready.
    - Use plausible clearances from corners, slabs, doors, roof edges, and adjoining masses.
    - Default to one shared rough width and height for a repeated window family. Use multiple sizes only when the user or design evidence requires them.
    - Unless the user or binding design evidence says otherwise, the default rough opening for every door and window is `1.0 m` wide by `2.0 m` high. This shared default overrides type-based guesses.
@@ -29,9 +30,12 @@ When the user requests windows or comparable wall openings:
    - User-deleted markers mean those openings were rejected. Do not recreate them.
    - Do not restore earlier positions or counts from the proposal.
 
-5. Cut and standardize as one operation.
-   - Cut only confirmed markers.
+5. Prepare the shell, then cut and standardize.
+   - If the target is not interior-ready, first hollow or rebuild the existing volume as a coherent thickness-aware shell. Preserve the approved exterior silhouette, roof, slabs, transforms, materials, and unrelated user edits; do not invent rooms or partitions unless requested.
+   - Validate that the cavity is usable, the inner wall surfaces are continuous, and the intended opening zones have sufficient wall thickness before cutting individual openings.
+   - Only after that validation, cut the confirmed door/window markers through both exterior and interior wall faces.
    - Standardize the outside wall, inside wall, jambs, sill, and head together so the opening is coherent through the wall thickness.
+   - Never stop after cutting the visible exterior face, and never leave the apparent opening blocked by solid geometry behind it.
    - Preserve confirmed opening dimensions and validate repeated members of the same window family against one shared width and height.
    - Hide or archive the marker collection after validation when it remains useful for revisions.
 
@@ -50,6 +54,8 @@ Apply these rules to every hard-surface mesh creation, edit, cleanup, or topolog
 - Place edges on real form changes: boundaries, openings, corners, creases, bevel limits, profile changes, and structural seams.
 - For rectangular openings on planar walls, use horizontal sill and head bands plus vertical jamb and bay strips. Carry the same opening coordinates through exterior and interior wall faces.
 - Keep opening topology facade-local. A jamb line stops at the sill/head band that needs it, and a sill/head line stops at the relevant wall boundary; do not project a building-wide Cartesian grid through unrelated facades, floors, slabs, ceilings, roofs, or blank wall regions.
+- Treat a raw Boolean result as an intermediate only. Before delivery, rebuild the affected wall surfaces and reveals into the feature-aligned contract; the existence of a visually open hole is not acceptance evidence.
+- On an orthogonal planar facade, reject any edge that diagonally bridges an opening corner, sill/head band, or jamb strip to a wall corner or unrelated vertex. Non-orthogonal edges are allowed only when they coincide with a genuine sloped, chamfered, curved, or mitered feature boundary such as a roof-contact line.
 - Clean both wall sides and the reveals as one thickness-aware system. Reuse exact sill, head, and jamb coordinates on the exterior face, interior face, and connecting reveal faces so the opening has no offset or hidden transition.
 - Prefer a minimal purposeful rectangular partition: first form continuous horizontal sill/head bands, then form vertical jamb/bay strips only inside the affected height interval. On blank planar regions, dissolve only subdivisions that neither complete a structural elevation loop nor improve regular quad flow.
 - Preserve floor, slab, sill, head, and wall-base elevation rings when they wrap a corner or continue coherently through adjoining exterior, interior, gable, reveal, or thickness faces. Such rings are structural topology, not a forbidden global grid.
@@ -88,8 +94,10 @@ At minimum, verify:
 - zero avoidable diagonal edges for orthogonal rectangular features;
 - consistent outward/interior normals;
 - zero wire edges, zero degenerate faces, zero accidental duplicate or overlapping geometry;
-- boundary and non-manifold counts do not worsen, except for intentional openings, and any repairs are reported;
+- classify boundary and non-manifold edges by source instead of requiring one blanket count: door thresholds that intentionally reach the wall base and other designed openings may remain boundaries, while wires, zero-length edges, accidental gaps, and disconnected fragments fail validation;
 - confirmed openings remain unobstructed across multiple interior samples;
+- targets that began without an interior cavity have a validated cavity and continuous inner wall surfaces before any door/window cut;
+- every completed door/window opening connects the exterior to that cavity through the full wall thickness, with no remaining solid plug behind the visible opening;
 - repeated opening families retain their agreed dimensions;
 - `UV_4m_world_standard` is active/render and passes density sampling;
 - the saved `.blend` can be reopened and returns the expected topology and metadata.
