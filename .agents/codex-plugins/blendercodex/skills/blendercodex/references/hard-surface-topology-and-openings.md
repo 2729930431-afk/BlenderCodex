@@ -10,11 +10,13 @@ When the user requests windows or comparable wall openings:
    - Read the live or saved mesh, wall thickness, floor bands, current opening rows, doors, roof/slab conflicts, corners, and facade rhythm.
    - Use plausible clearances from corners, slabs, doors, roof edges, and adjoining masses.
    - Default to one shared rough width and height for a repeated window family. Use multiple sizes only when the user or design evidence requires them.
+   - Unless the user or binding design evidence says otherwise, the default rough opening for every door and window is `1.0 m` wide by `2.0 m` high. This shared default overrides type-based guesses.
 
 2. Mark only.
    - Create empties in a pending collection such as `窗位标记_待确认`.
    - Align each empty to its wall plane and size it to the intended rough opening.
    - Use semantic names containing facade side, floor, and sequence. When practical, store ASCII custom properties such as `blendercodex_role=window_marker`, `blendercodex_target_object`, `blendercodex_floor_index`, `blendercodex_opening_width`, `blendercodex_opening_height`, and `blendercodex_status=pending_confirmation`.
+   - For default-size markers, set local display width/height and the custom properties to the same `1.0 x 2.0 m` rough opening. Blender Empty `dimensions` may report zero, so validate the display size from its display size and scale as well as from the authoritative custom properties.
    - Do not modify the wall mesh during this phase.
 
 3. Wait for explicit confirmation.

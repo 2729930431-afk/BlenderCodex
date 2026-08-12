@@ -1,6 +1,6 @@
 {
   "name": "blendercodex",
-  "version": "0.1.0+codex.20260810135523",
+  "version": "0.1.0+codex.20260812150037",
   "description": "Generate and update Blender .blend deliverables through local background bpy execution, with optional temporary live RPC control.",
   "author": {
     "name": "XT"
@@ -33,6 +33,9 @@
       "Heroine-calibrated landmarks and duplicate-safe binding previews",
       "Confirmed window-opening workflow",
       "Hard-surface topology standard",
+      "Default editable tiled-roof systems",
+      "Per-slope Boolean trimming for L-shaped tiled roofs",
+      "Default 1m x 2m door and window openings",
       "Modeling deliverables"
     ],
     "defaultPrompt": [

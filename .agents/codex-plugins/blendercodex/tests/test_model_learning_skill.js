@@ -13,8 +13,11 @@ const packet = read("skills/model-learning/references/learning-packet.md");
 const blendercodexSkill = read("skills/blendercodex/SKILL.md");
 const standards = read("skills/blendercodex/references/modeling-standards.md");
 const roofMirroring = read("skills/blendercodex/references/roof-origin-mirroring.md");
+const tiledRoof = read("skills/blendercodex/references/tiled-roof-system.md");
+const hardSurface = read("skills/blendercodex/references/hard-surface-topology-and-openings.md");
 const fbxHierarchy = read("skills/blendercodex/references/fbx-unity-hierarchy.md");
 const fbxLearning = read("skills/model-learning/references/verified-fbx-parenting.md");
+const tiledRoofLearning = read("skills/model-learning/references/verified-tiled-roof-and-openings.md");
 const manifest = JSON.parse(read(".codex-plugin/plugin.json"));
 
 assert.match(skill, /^---\nname: model-learning\n/m, "model-learning frontmatter is present");
@@ -59,6 +62,15 @@ assert.match(
   /read `references\/roof-origin-mirroring\.md`/,
   "symmetric tiled roofs route through the focused mirroring workflow",
 );
+assert.match(blendercodexSkill, /瓦片屋顶 \(tiled roof\)/i, "unspecified roofs default to the named tiled-roof system");
+assert.match(blendercodexSkill, /read `references\/tiled-roof-system\.md`/i, "roof work routes through the tiled-roof reference");
+assert.match(tiledRoof, /Array along eave -> Array up slope -> Boolean Difference/, "L-roof tiles keep the verified modifier order");
+assert.match(tiledRoof, /Choose the Boolean target independently per slope/, "L-roof cutter targets are selected per slope");
+assert.match(tiledRoof, /Never copy one cutter target to every slope/, "L-roof workflow rejects the prior global-cutter failure");
+assert.match(blendercodexSkill, /rough width and `2\.0 m` rough height for every door and window/, "doors and windows default to 1x2 rough openings");
+assert.match(hardSurface, /default rough opening for every door and window is `1\.0 m` wide by `2\.0 m` high/, "opening reference enforces the 1x2 default");
+assert.match(tiledRoofLearning, /observed_problem/, "verified tiled-roof learning records the prior failure");
+assert.match(tiledRoofLearning, /唐老三家屋顶_布尔原型1/, "verified learning records authoritative scene evidence");
 assert.match(
   roofMirroring,
   /Place the building root object's origin at the roof-plan symmetry center/,
