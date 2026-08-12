@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Learning"
+  short_description: "Promote proven Blender workflows into executors"
+  default_prompt: "Use $workflow-learning to turn a verified Blender correction into a tested reusable executor and focused skill."

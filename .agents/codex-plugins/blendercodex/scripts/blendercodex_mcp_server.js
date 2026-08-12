@@ -15,6 +15,11 @@ const humanoidRuntimeScript = path.join(
   "scripts",
   "humanoid_rig_runtime.py",
 );
+const runtimeScripts = {
+  openings: path.join(pluginRoot, "skills", "architectural-openings", "scripts", "opening_runtime.py"),
+  tiledRoof: path.join(pluginRoot, "skills", "tiled-roof", "scripts", "tiled_roof_runtime.py"),
+  validation: path.join(pluginRoot, "skills", "model-validation", "scripts", "model_validation_runtime.py"),
+};
 function codexHome() {
   return process.env.CODEX_HOME || path.join(os.homedir(), ".codex");
 }
@@ -472,6 +477,25 @@ function humanoidRuntimeCode(action, args) {
   ].join("\n");
 }
 
+function workflowRuntimeCode(runtimeKey, action, args) {
+  const runtimePath = runtimeScripts[runtimeKey];
+  if (!runtimePath || !fs.existsSync(runtimePath)) {
+    throw new Error(`Workflow runtime not found: ${runtimeKey}`);
+  }
+  const runtimeArgs = { ...args };
+  delete runtimeArgs.sessionName;
+  delete runtimeArgs.sessionFile;
+  delete runtimeArgs.timeoutMs;
+  return [
+    "import json as _blendercodex_json",
+    `ACTION = ${JSON.stringify(String(action))}`,
+    `PARAMS = _blendercodex_json.loads(${JSON.stringify(JSON.stringify(runtimeArgs))})`,
+    `__file__ = ${JSON.stringify(runtimePath)}`,
+    "with open(__file__, 'rb') as _blendercodex_runtime_file:",
+    "    exec(compile(_blendercodex_runtime_file.read(), __file__, 'exec'), globals(), globals())",
+  ].join("\n");
+}
+
 function toolResult(text, isError = false) {
   return {
     content: [{ type: "text", text: typeof text === "string" ? text : JSON.stringify(text, null, 2) }],
@@ -574,6 +598,122 @@ const tools = [
       },
       required: ["target", "keep"],
     },
+  },
+  {
+    name: "blendercodex_opening_markers_create",
+    description: "Create semantic live door/window markers with distinct role defaults. Continue to the apply tool unless the user explicitly requested a review pause.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        markerCollection: { type: "string" },
+        markers: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              role: { type: "string", enum: ["door", "window"] },
+              target: { type: "string" },
+              axis: { type: "string", enum: ["X", "Y", "x", "y"] },
+              location: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3 },
+              rotation: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3 },
+              width: { type: "number", exclusiveMinimum: 0 },
+              height: { type: "number", exclusiveMinimum: 0 },
+              sill: { type: "number", minimum: 0 },
+            },
+            required: ["role", "target"],
+            additionalProperties: false,
+          },
+        },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+      required: ["markers"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "blendercodex_opening_markers_inspect",
+    description: "Read the authoritative live opening-marker collection without changing the scene.",
+    inputSchema: { type: "object", properties: { markerCollection: { type: "string" }, sessionName: { type: "string" }, sessionFile: { type: "string" }, timeoutMs: { type: "number" } } },
+  },
+  {
+    name: "blendercodex_openings_apply",
+    description: "Re-read live markers, build validated rectilinear wall candidates, atomically apply openings, and save by default. Unsupported non-rectilinear targets fail without modifying the source mesh.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        markerCollection: { type: "string" },
+        wallThickness: { type: "number" },
+        componentsByObject: { type: "object" },
+        protectedObjects: { type: "array", items: { type: "string" } },
+        hideMarkers: { type: "boolean" },
+        save: { type: "boolean" },
+        filepath: { type: "string" },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+      required: ["markerCollection"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "blendercodex_tiled_roof_inspect",
+    description: "Inspect BlenderCodex tiled-roof source objects and editable modifier stacks.",
+    inputSchema: { type: "object", properties: { sessionName: { type: "string" }, sessionFile: { type: "string" }, timeoutMs: { type: "number" } } },
+  },
+  {
+    name: "blendercodex_tiled_roof_build",
+    description: "Build and validate an editable tiled-roof system from analyzed roof domains, then save by default.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        domains: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              roofObject: { type: "string" },
+              ownerObject: { type: "string" },
+              kind: { type: "string", enum: ["gable_mirror", "independent_slope", "l_boolean"] },
+              eave: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3 },
+              ridge: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3 },
+              ridgeDirection: { type: "array", items: { type: "number" }, minItems: 3, maxItems: 3 },
+              ridgeSpan: { type: "number", exclusiveMinimum: 0 },
+              mirrorAxis: { type: "integer", minimum: 0, maximum: 2 },
+              cutterObject: { type: "string" },
+            },
+            required: ["roofObject", "ownerObject", "kind", "eave", "ridge", "ridgeDirection", "ridgeSpan"],
+            additionalProperties: false,
+          },
+        },
+        replaceExisting: { type: "boolean" },
+        save: { type: "boolean" },
+        filepath: { type: "string" },
+        sessionName: { type: "string" },
+        sessionFile: { type: "string" },
+        timeoutMs: { type: "number" },
+      },
+      required: ["domains"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "blendercodex_tiled_roof_validate",
+    description: "Validate tiled-roof source topology, UV density, and Array/Mirror/Boolean modifier order.",
+    inputSchema: { type: "object", properties: { objects: { type: "array", items: { type: "string" } }, sessionName: { type: "string" }, sessionFile: { type: "string" }, timeoutMs: { type: "number" } } },
+  },
+  {
+    name: "blendercodex_validate_model",
+    description: "Validate mesh topology and UV_4m_world_standard density for explicit or selected objects.",
+    inputSchema: { type: "object", properties: { objects: { type: "array", items: { type: "string" } }, requireManifold: { type: "boolean" }, sessionName: { type: "string" }, sessionFile: { type: "string" }, timeoutMs: { type: "number" } } },
+  },
+  {
+    name: "blendercodex_model_signature",
+    description: "Create stable canonical SHA-256 signatures for protected Blender objects.",
+    inputSchema: { type: "object", properties: { objects: { type: "array", items: { type: "string" } }, sessionName: { type: "string" }, sessionFile: { type: "string" }, timeoutMs: { type: "number" } }, required: ["objects"] },
   },
   {
     name: "blendercodex_humanoid_analyze",
@@ -689,6 +829,21 @@ async function callTool(name, args = {}) {
     }
     return toolResult(result);
   }
+  const workflowActions = {
+    blendercodex_opening_markers_create: ["openings", "markers_create"],
+    blendercodex_opening_markers_inspect: ["openings", "markers_inspect"],
+    blendercodex_openings_apply: ["openings", "apply"],
+    blendercodex_tiled_roof_inspect: ["tiledRoof", "inspect"],
+    blendercodex_tiled_roof_build: ["tiledRoof", "build"],
+    blendercodex_tiled_roof_validate: ["tiledRoof", "validate"],
+    blendercodex_validate_model: ["validation", "validate"],
+    blendercodex_model_signature: ["validation", "signature"],
+  };
+  if (workflowActions[name]) {
+    const [runtimeKey, action] = workflowActions[name];
+    const code = workflowRuntimeCode(runtimeKey, action, args);
+    return toolResult(await callBridge("run_python", { code }, options));
+  }
   const humanoidActions = {
     blendercodex_humanoid_analyze: "analyze",
     blendercodex_humanoid_fit_standard: "fit_standard",
@@ -780,5 +935,6 @@ if (require.main === module) {
 
 module.exports = {
   humanoidRuntimeCode,
+  workflowRuntimeCode,
   shouldUseKeepAlive,
 };

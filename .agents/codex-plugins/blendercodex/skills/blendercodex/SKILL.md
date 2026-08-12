@@ -16,7 +16,7 @@ For existing `.blend` file regeneration or batch edits outside live control, com
 
 The temporary live RPC bridge launches Blender with a one-shot `--python` bridge script from the Codex plugin directory. It does not install a Blender add-on, does not copy files into Blender's add-on directory, and disappears when that Blender process exits or the bridge is shut down.
 
-For text-only requests, first generate one reference image, show it to the user, and wait for confirmation before generating Blender code. If the user provides images, use them directly as the primary reference.
+For text-only requests, generate one reference image when it materially reduces ambiguity, then continue into modeling. Pause for reference approval only when the user explicitly requests a review step. If the user provides images, use them directly as the primary reference.
 
 ## Workflow
 
@@ -27,7 +27,7 @@ For text-only requests, first generate one reference image, show it to the user,
 
 2. Classify create-model input.
    - If the user provides one or more images, use them as the reference and proceed.
-   - If the user provides only text, generate one reference image and wait for confirmation or revision before generating Blender code.
+   - If the user provides only text, generate one reference image when useful and continue unless the user explicitly requests review or revision first.
    - If the user provides text plus images, treat the images as the primary form reference and the text as constraints.
 
 3. Choose output paths for create-model work.
@@ -95,19 +95,23 @@ Temporary live RPC rules:
 - Do not create backup `.blend` copies during live RPC edits unless the user explicitly requested a backup. Use targeted edits and verification instead.
 - For create-model work, prefer the background `.blend` workflow unless the user specifically asks for live scene control.
 
-## Mandatory Window Opening Approval Gate
+## Architectural Opening Execution Policy
 
-Apply this gate whenever the user asks to add, cut, create, arrange, move, or revise windows or comparable wall openings.
+Use the focused `architectural-openings` skill and its executor whenever the user asks to add, cut, create, arrange, move, or revise doors, windows, or comparable wall openings.
 
-1. Inspect the real building mesh, wall thickness, floor bands, existing doors/windows, facade rhythm, corners, and structural conflicts before proposing locations. Classify it as interior-ready only when the intended opening zones have a usable cavity plus paired exterior/interior wall faces; a closed solid, exterior-only sheet, single facade face, or disconnected panel is not interior-ready.
-2. Create or update semantic empty-object markers only. Put them in a pending-confirmation collection such as `窗位标记_待确认`; align each marker to its target wall and set its dimensions to the intended rough opening size. Give markers stable facade/floor names and opening metadata when practical.
-   - Unless the user or binding design evidence specifies another size, use a `1.0 m` rough width and `2.0 m` rough height for every door and window. Store the same authoritative values in `blendercodex_opening_width` and `blendercodex_opening_height`; do not silently substitute a type-specific window size.
-3. Show or summarize the marker plan and wait for explicit user confirmation. Do not cut, boolean, delete, rebuild, or otherwise change the target wall mesh before confirmation.
-4. After confirmation, re-read the live marker collection. Treat marker transforms as authoritative: preserve user-moved markers, honor deleted markers as removed openings, and never recreate or reset them unless asked.
-5. If the target is not interior-ready, first preserve the approved exterior while rebuilding it as a coherent thickness-aware hollow shell. Validate the usable cavity and continuous inner wall surfaces before cutting anything.
-6. Cut only the confirmed markers through the full wall thickness, then standardize the exterior face, interior face, and reveal topology together under the hard-surface contract. Keep members of the same window family equal in rough width and height unless the user explicitly defines multiple sizes.
-7. Treat raw Boolean output as an intermediate at most. Before delivery, rebuild the affected facade into facade-local sill/head bands and jamb/bay strips; do not leave Boolean diagonals, triangle fans, slivers, or opening coordinates propagated into adjacent blank walls, corners, floors, or roof caps.
-8. Keep the marker collection hidden or otherwise non-obstructive after validation, but preserve it when future revision context is useful.
+1. Inspect the real building mesh, wall thickness, floor bands, existing doors/windows, facade rhythm, corners, and structural conflicts before proposing locations.
+   - Treat the target as interior-ready only when it has a real usable cavity and paired exterior/interior wall faces across the intended opening zones. A closed solid, exterior-only sheet, or disconnected facade panel is not interior-ready.
+2. Create or update semantic empty-object markers through `architectural-openings`. Put them in a stable collection such as `门窗标记`; align each marker to its target wall and set its dimensions to the intended rough opening size.
+   - Treat doors and windows as distinct opening families. Unless the user or binding design evidence specifies another size, use a standard single-leaf door rough opening of `1.0 m` wide by `2.1 m` high with a `0.0 m` sill, and a standard window rough opening of `1.2 m` wide by `1.5 m` high with a `0.9 m` sill. Never assign the same fallback width-and-height pair to both roles. Design evidence may establish larger main or double doors and additional window families. Store the authoritative values in `blendercodex_opening_width`, `blendercodex_opening_height`, and `blendercodex_opening_sill_height`, and keep the marker's visual box size consistent with those properties.
+3. Continue directly by default. Stop after marker creation only when the user explicitly asks to inspect, move, approve, or revise markers first.
+4. Immediately before mutation, re-read the live marker collection. Treat marker transforms as authoritative: preserve user-moved markers, honor deleted markers as removed openings, and never recreate or reset them unless asked.
+5. Prepare the shell, then cut only the current live markers.
+   - If the target is not interior-ready, first hollow or open the existing volume into a coherent thickness-aware shell while preserving its approved exterior silhouette, roof, slabs, transforms, and unrelated user edits. Do not invent rooms or partitions unless the user asks for them.
+   - Validate the new interior cavity and inner wall surfaces before cutting any individual door or window opening.
+   - Only then cut each current live door/window opening through both exterior and interior wall faces and connect them with complete jamb, sill, and head reveals. Never cut only the visible exterior face or leave an opening blocked by solid geometry.
+   - Standardize the exterior face, interior face, and reveal topology together under the hard-surface contract. Keep members of the same window family equal in rough width and height unless the user explicitly defines multiple sizes.
+   - Treat raw Boolean output as an intermediate at most. Rebuild the affected facade into facade-local sill/head bands and jamb/bay strips; do not leave Boolean diagonals, triangle fans, slivers, or opening coordinates propagated into adjacent blank walls, corners, floors, or roof caps.
+6. Keep the marker collection hidden or otherwise non-obstructive after validation, but preserve it when future revision context is useful.
 
 ## Mandatory Hard-Surface Topology Contract
 
@@ -128,7 +132,7 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - Ignore wall stains, patches, surface damage, grime, tiny material details, and ornamental micro-detail by default.
 - Preserve the basic structure: massing, roofs, domes, arches, doors, windows, balconies, simple railings, stairs, major trim, and large decorative forms.
 - For house generation, default to a house-specific prompt contract: ignore doorplates, readable signs, animal-head trophies, antlers, and other small wall ornaments unless the user explicitly asks for them; keep the front facade orientation clear from the reference and place entrances, shopfronts, balconies, and major facade details on that intended face.
-- For every repeated brick or roof-tile element, use unapplied Blender Array modifiers with editable source modules, counts, spacing, and overlap. Do not hand-duplicate, join, or bake repeated bricks or tiles into a one-off mesh. Do not flatten tile roofs into a single painted plane when the reference clearly depends on repeated tiles.
+- For every repeated brick or roof-tile element, use unapplied Blender Array modifiers with editable source modules, counts, spacing, and overlap. Do not hand-duplicate, join, bake repeated elements into a one-off mesh, or flatten a tile roof into a painted plane. Route tiled roofs through the focused `tiled-roof` skill and its runtime executor.
 - Unless the user requests another roof construction, treat every request to make or revise a building roof as a **瓦片屋顶 (tiled roof)**. Read `references/tiled-roof-system.md` and build the editable structural base, pan-tile and cover-tile sources, ridge/edge tiles, and modifiers described there. This default defines construction, not roof silhouette: preserve the requested gabled, hipped, L-shaped, single-slope, or other form.
 - Keep each generated roof system in the owning roof's hierarchy: link tile arrays, ridge tiles, trims, and other roof-related child objects to the same collection or collections as the roof, and parent them directly to the owning roof object. Do not create a dedicated one-roof collection solely to hold generated roof parts. Preserve user-authored roof parenting and collection placement during later edits.
 - For a symmetric two-slope gabled roof, read `references/roof-origin-mirroring.md`. Default to one authoritative slope's editable pan-tile and cover-tile Array sources, then a final unapplied Mirror modifier that uses the owning building root as its mirror object. Place that building origin at the roof-plan symmetry center on ground Z while preserving the building mesh and every descendant's world-space transform. Keep ridge tiles independent. Do not collapse genuinely asymmetric, hipped, dormered, penetrated, damaged, or slope-specific roofs into this pattern.
@@ -169,10 +173,12 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 
 ## Learning From User Edits
 
-- When the user says to learn, remember, analyze their modifications, or make the plugin smarter, use the `model-learning` skill with this skill. Inspect the live or saved scene, preserve user edits, explain the observed correction, decide whether it is durable, then update the closest owning `SKILL.md` rule or focused reference file.
+- When the user says to learn, remember, analyze their modifications, or make the plugin smarter, use `model-learning` with `workflow-learning`. Inspect the live or saved scene, preserve user edits, explain the observed correction, and classify it before promotion.
+- A repeatable geometry, validation, scene-mutation, or orchestration lesson is not learned until it has an owning focused skill, runtime action, focused MCP tool when applicable, representative fixture, and regression tests. Do not complete such learning as a `SKILL.md` or reference-only change.
 - Do not promote every one-off model change into a global default. Promote only corrections that are verified by the user, repeated, or clearly repair a class of modeling failures.
-- Do not rely on adjacent `.memory.md` files for future default behavior. Durable lessons must live in the loaded skill body or a referenced rule document so the next BlenderCodex task receives the rule directly.
-- Record learnings as concise evidence-based notes: what was wrong, what the user changed, why that change improves the model, what future generation or edit should do, and what validation proves the new rule was applied.
+- Use `SKILL.md` for routing and policy, and focused references for evidence and limits. Do not treat either as an executable implementation.
+- Do not rely on adjacent `.memory.md` files for future default behavior. Keep model-local context in scene metadata and executable behavior in tested runtime modules.
+- Record concise evidence: what was wrong, what the user changed, why it improves the model, which owning executor implements it, and which acceptance check proves it.
 
 ## Resources
 
@@ -183,7 +189,11 @@ Apply this gate whenever the user asks to add, cut, create, arrange, move, or re
 - Plugin-level `scripts/blendercodex_mcp_server.js`: Codex-side MCP adapter for starting and using the temporary bridge.
 - `references/modeling-standards.md`: load when deciding what to model or ignore from a reference.
 - `references/script-contract.md`: load before writing generated Blender bpy code.
-- `references/hard-surface-topology-and-openings.md`: mandatory rules for window approval gates and every hard-surface mesh operation.
+- Companion skill `architectural-openings`: executable door/window marker and wall-opening workflow.
+- Companion skill `tiled-roof`: executable tiled-roof workflow.
+- Companion skill `model-validation`: shared topology, UV, and protected-signature validation.
+- Companion skills `model-learning` and `workflow-learning`: classify feedback and require executable lessons to become tested owning runtimes instead of documentation alone.
+- `references/hard-surface-topology-and-openings.md`: mandatory rules for every hard-surface mesh operation.
 - `references/roof-origin-mirroring.md`: mandatory workflow when creating or converting symmetric two-slope tiled roofs to a single editable slope plus building-origin Mirror system.
 - `references/tiled-roof-system.md`: mandatory default construction for 瓦片屋顶 systems, including the verified per-slope Boolean workflow for L-shaped roof intersections.
 - `references/fbx-unity-hierarchy.md`: mandatory transform-normalization and round-trip checks for parent/origin edits in FBX/Unity export hierarchies.

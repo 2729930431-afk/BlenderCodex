@@ -17,14 +17,26 @@ const tiledRoof = read("skills/blendercodex/references/tiled-roof-system.md");
 const hardSurface = read("skills/blendercodex/references/hard-surface-topology-and-openings.md");
 const fbxHierarchy = read("skills/blendercodex/references/fbx-unity-hierarchy.md");
 const fbxLearning = read("skills/model-learning/references/verified-fbx-parenting.md");
-const tiledRoofLearning = read("skills/model-learning/references/verified-tiled-roof-and-openings.md");
 const hollowShellLearning = read("skills/model-learning/references/verified-hollow-shell-openings.md");
+const tiledRoofLearning = read("skills/tiled-roof/references/verified-tiled-roof-and-openings.md");
+const openingSizeLearning = read("skills/architectural-openings/references/verified-distinct-opening-sizes.md");
+const workflowLearning = read("skills/workflow-learning/SKILL.md");
+const promotionSchema = read("skills/workflow-learning/references/executor-promotion-schema.md");
+const openingRuntime = read("skills/architectural-openings/scripts/opening_runtime.py");
+const roofRuntime = read("skills/tiled-roof/scripts/tiled_roof_runtime.py");
 const manifest = JSON.parse(read(".codex-plugin/plugin.json"));
 
 assert.match(skill, /^---\nname: model-learning\n/m, "model-learning frontmatter is present");
 assert.match(skill, /学习/, "Chinese learning trigger is present");
 assert.match(skill, /Gather evidence/, "learning workflow collects evidence");
-assert.match(skill, /Choose the storage target/, "learning workflow scopes storage");
+assert.match(skill, /Choose and implement the promotion target/, "learning workflow implements a scoped promotion target");
+assert.match(skill, /runtime behavior/, "learning workflow requires executable behavior");
+assert.match(skill, /executor-promotion-schema\.md/, "executable learning uses the workflow-learning packet schema");
+assert.match(packet, /only for policy, model-local, or do-not-store lessons/i, "legacy packet is limited to non-executable lessons");
+assert.match(promotionSchema, /runtime_action/, "executor packet declares a runtime action");
+assert.match(workflowLearning, /document-only executable lesson must fail promotion/i, "document-only learning is rejected");
+assert.match(openingRuntime, /def apply_openings/, "opening learning has a reusable executor");
+assert.match(roofRuntime, /def build\(params\)/, "roof learning has a reusable executor");
 assert.match(
   skill,
   /Do not create or update `\.memory\.md` as the default storage path/,
@@ -39,8 +51,8 @@ assert.ok(
 );
 assert.match(
   blendercodexSkill,
-  /Durable lessons must live in the loaded skill body/,
-  "blendercodex skill promotes durable lessons into rules",
+  /not learned until it has an owning focused skill, runtime action, focused MCP tool when applicable, representative fixture, and regression tests/,
+  "blendercodex requires executable promotion evidence",
 );
 assert.match(blendercodexSkill, /gabled house roofs/i, "gabled roof default is promoted");
 assert.match(
@@ -68,10 +80,14 @@ assert.match(blendercodexSkill, /read `references\/tiled-roof-system\.md`/i, "ro
 assert.match(tiledRoof, /Array along eave -> Array up slope -> Boolean Difference/, "L-roof tiles keep the verified modifier order");
 assert.match(tiledRoof, /Choose the Boolean target independently per slope/, "L-roof cutter targets are selected per slope");
 assert.match(tiledRoof, /Never copy one cutter target to every slope/, "L-roof workflow rejects the prior global-cutter failure");
-assert.match(blendercodexSkill, /rough width and `2\.0 m` rough height for every door and window/, "doors and windows default to 1x2 rough openings");
-assert.match(hardSurface, /default rough opening for every door and window is `1\.0 m` wide by `2\.0 m` high/, "opening reference enforces the 1x2 default");
+assert.match(blendercodexSkill, /standard single-leaf door rough opening of `1\.0 m` wide by `2\.1 m` high/, "single-leaf doors have a dedicated default");
+assert.match(blendercodexSkill, /standard window rough opening of `1\.2 m` wide by `1\.5 m` high with a `0\.9 m` sill/, "windows have a distinct dedicated default");
+assert.match(hardSurface, /Never reuse one fallback width-and-height pair across both roles/, "opening reference forbids a shared door/window fallback");
+assert.doesNotMatch(blendercodexSkill, /rough height for every door and window/, "the rejected shared 1x2 rule is absent");
 assert.match(tiledRoofLearning, /observed_problem/, "verified tiled-roof learning records the prior failure");
 assert.match(tiledRoofLearning, /唐老三家屋顶_布尔原型1/, "verified learning records authoritative scene evidence");
+assert.match(openingSizeLearning, /artifact: .*方国伟家\.blend/, "opening-size correction records the authoritative scene");
+assert.match(openingSizeLearning, /door and window roles must not share one fallback width-and-height pair/, "opening-size correction records the rejected failure mode");
 assert.match(hollowShellLearning, /observed_problem/, "verified hollow-shell learning records the prior failure");
 assert.match(hollowShellLearning, /唐老二主屋/, "verified hollow-shell learning records authoritative scene evidence");
 assert.match(hollowShellLearning, /Raw Boolean output is only an intermediate/i, "verified learning rejects raw Boolean delivery topology");
@@ -116,7 +132,7 @@ assert.match(fbxLearning, /future_rule/, "verified FBX learning records the prom
 assert.match(fbxLearning, /scoped_skill_rule/, "verified FBX learning is correctly scoped");
 assert.match(standards, /triangular gable wall faces/i, "modeling standards include gable closure detail");
 assert.ok(
-  manifest.interface.capabilities.includes("User-edit learning loop"),
+  manifest.interface.capabilities.includes("Executable workflow-learning loop"),
   "manifest advertises learning loop capability",
 );
 assert.ok(

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tiled Roof"
+  short_description: "Build editable Blender tiled-roof systems"
+  default_prompt: "Use $tiled-roof to build or update an editable tiled roof in the current Blender project."

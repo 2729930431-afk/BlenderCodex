@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model Learning"
+  short_description: "Promote Blender feedback into reusable executors"
+  default_prompt: "Use $model-learning to promote this verified Blender correction into an owning runtime, focused skill, and regression test."

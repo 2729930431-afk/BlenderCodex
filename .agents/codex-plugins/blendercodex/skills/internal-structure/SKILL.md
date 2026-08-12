@@ -12,7 +12,7 @@ Use this skill with BlenderCodex when a building needs internal structural logic
 ## Coordination
 
 - Also use the `blendercodex` skill for Blender file execution, RPC bridge startup, live scene inspection, saving rules, and existing model preservation.
-- Before creating or changing a window, door, wall opening, shell, slab, stair, landing, core, or other hard-surface topology, read sibling reference `../blendercodex/references/hard-surface-topology-and-openings.md` and apply its confirmation, topology, transaction, and validation rules.
+- Before changing a shell, slab, stair, landing, core, or other hard-surface topology, read sibling reference `../blendercodex/references/hard-surface-topology-and-openings.md`. Route windows, doors, and wall openings through the sibling `architectural-openings` skill and its runtime executor.
 - For an existing or currently open `.blend`, use the temporary live RPC bridge and inspect the real scene before generating or changing internal structure.
 - For a new building model, include floor markers during initial generation so later windows, doors, facade bands, and internal structure share the same floor reference.
 - If the existing house body was made from stacked cube primitives, do not continue that pattern. Add internal structure as integrated floor slabs, stairwell voids, and connected structural modules; for future buildings, prefer an interior-ready shell or connected main-body mesh.

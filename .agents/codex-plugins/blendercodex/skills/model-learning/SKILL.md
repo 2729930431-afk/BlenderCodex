@@ -1,18 +1,18 @@
 ---
 name: model-learning
-description: Use with BlenderCodex when the user asks to learn from manual Blender/model edits, remember a correction, analyze why they changed a model, promote a lesson into plugin rules or focused skills, or make the plugin progressively smarter from feedback, including phrases like "学习", "记住我的修改", "分析我为什么这么改", or "让插件越来越聪明".
+description: Use with BlenderCodex when the user asks to learn from manual Blender/model edits, remember a correction, analyze why they changed a model, turn experience into an executor, promote a lesson into an owning focused skill, improve workflow speed, or make the plugin progressively smarter from feedback, including phrases like "学习", "记住我的修改", "把经验变成执行器", or "让插件越来越聪明".
 ---
 
 # Model Learning
 
 ## Overview
 
-Use this skill to turn verified user model edits into durable BlenderCodex knowledge. The goal is not automatic accumulation of every change; it is a small learning loop that records evidence, explains the reason behind the user correction, and promotes reusable lessons into the right skill rule or focused reference so future tasks receive the rule directly.
+Use this skill to turn verified user model edits into executable BlenderCodex capability. Documentation records evidence, but a repeatable modeling workflow is not learned until it has an owning focused skill, runtime action, parameter schema, fixture, and regression test.
 
 ## Coordination
 
 - Also use `blendercodex` for live RPC inspection, scene summaries, save rules, and existing-model preservation.
-- Also use `skill-lifecycle` before updating `SKILL.md`, references, tests, or other reusable plugin assets.
+- Also use `workflow-learning` to validate executable promotion packets and lifecycle requirements.
 - Use `internal-structure` too when the learned edit concerns floors, slabs, stairs, openings, cores, or structural interiors.
 - Inspect existing `SKILL.md` bodies and relevant references before adding a new rule so duplicate lessons are merged instead of repeated.
 
@@ -25,20 +25,25 @@ Use this skill to turn verified user model edits into durable BlenderCodex knowl
 
 2. Build a learning packet.
    - Write the observed issue, the user correction, the inferred reason, the proposed future rule, and the confidence level.
-   - Use `references/learning-packet.md` when the correction is more than a one-line rule update.
+   - Classify the lesson as `executable`, `policy`, `model_local`, or `do_not_store`.
+   - For `executable`, use `../workflow-learning/references/executor-promotion-schema.md` and produce its JSON packet. Do not use the policy packet as a substitute.
+   - Use `references/learning-packet.md` only for `policy`, `model_local`, or `do_not_store` evidence.
    - Separate hard evidence from inference. Say when a reason is inferred from geometry or screenshots rather than directly stated by the user.
 
-3. Choose the storage target.
-   - Put durable modeling defaults in the closest owning `SKILL.md` or a focused reference file.
-   - Put workflow-specific guardrails in the owning skill body when they must affect the next task immediately.
-   - Put longer implementation details in a focused reference file that the owning skill explicitly tells agents to read.
+3. Choose and implement the promotion target.
+   - Put deterministic geometry, validation, and orchestration behavior in the closest owning runtime script.
+   - Expose a focused MCP action when doing so removes repeated generated bpy code.
+   - Add a representative fixture and regression tests that execute or exercise the promoted action.
+   - Put routing instructions in the owning `SKILL.md` and evidence or non-executable limits in a focused reference.
+   - Reject repeatable modeling workflows that are promoted only into prose.
    - Put model-local notes in scene or object custom properties only when the current `.blend` needs future edit context.
    - Do not create or update `.memory.md` as the default storage path. Use it only if the user explicitly asks for an audit log rather than a task rule.
    - Do not store secrets, temporary debugging paths, unverified guesses, or one-off artistic choices as global rules.
 
 4. Validate the learning.
    - Add or update the smallest realistic acceptance check when the learning changes a reusable workflow.
-   - At minimum, verify frontmatter, trigger text, and the presence of the promoted rule or reference entry.
+   - Run `../workflow-learning/scripts/promote_learning.py` for every executable packet, then run the referenced runtime, MCP, fixture, and regression checks.
+   - At minimum, verify frontmatter, runtime behavior, focused MCP routing, fixtures, and regression acceptance checks.
    - If the plugin source changes, update the local plugin cachebuster so future threads can load the new skill package.
 
 5. Report back.

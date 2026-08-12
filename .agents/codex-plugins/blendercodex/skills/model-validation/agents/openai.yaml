@@ -1,0 +1,4 @@
+interface:
+  display_name: "Model Validation"
+  short_description: "Validate Blender topology, UVs, and signatures"
+  default_prompt: "Use $model-validation to validate the current Blender edit before saving."

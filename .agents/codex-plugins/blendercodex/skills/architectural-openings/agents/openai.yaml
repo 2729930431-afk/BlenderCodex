@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architectural Openings"
+  short_description: "Create and validate Blender wall openings"
+  default_prompt: "Use $architectural-openings to apply door and window openings to the current Blender building."

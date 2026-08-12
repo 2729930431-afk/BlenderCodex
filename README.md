@@ -11,7 +11,11 @@ persistent Blender add-on.
 - `internal-structure`: add floor-aware building structure and stairs.
 - `viewport-match`: compare a Blender viewport with a reference image.
 - `screenshot-design-refine`: generate design references from Blender views.
-- `model-learning`: promote verified modeling corrections into reusable rules.
+- `model-learning`: classify verified modeling corrections and route them to the owning capability.
+- `workflow-learning`: require every repeatable operation to become a runtime action, focused MCP route when applicable, fixture, and regression tests. Skill text and reference documents provide routing, policy, evidence, and limits; they do not count as executable learning.
+- `architectural-openings`: create and apply role-specific door/window openings.
+- `tiled-roof`: build editable pan-, cover-, and ridge-tile systems.
+- `model-validation`: validate topology, world-density UVs, and stable signatures.
 - `blendercodex_*` MCP tools for starting the temporary bridge, running Blender
   Python, saving files, and inspecting scenes.
 
@@ -41,11 +45,22 @@ loaded.
 ## Development Checks
 
 ```powershell
-python C:\Users\27299\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py .\.agents\codex-plugins\blendercodex
-node .\.agents\codex-plugins\blendercodex\tests\test_keepalive_visible_guard.js
-node .\.agents\codex-plugins\blendercodex\tests\test_model_learning_skill.js
+$plugin = '.\.agents\codex-plugins\blendercodex'
+$env:PYTHONUTF8 = '1'
+Get-ChildItem "$plugin\tests\*.js" | ForEach-Object { node $_.FullName; if ($LASTEXITCODE) { throw $_.FullName } }
+python "$plugin\tests\test_architecture_executors.py"
+python "$plugin\skills\blendercodex\tests\test_blender_locator.py"
+python "$plugin\skills\blendercodex\tests\test_capture_blend_state.py"
+foreach ($skill in 'architectural-openings','tiled-roof','model-validation','workflow-learning','model-learning','blendercodex') {
+  uv run --with pyyaml python "$env:USERPROFILE\.codex\skills\.system\skill-creator\scripts\quick_validate.py" "$plugin\skills\$skill"
+}
+uv run --with pyyaml python "$env:USERPROFILE\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py" $plugin
 ```
 
 The live Blender MCP tests require a local Blender executable. Set
 `BLENDERCODEX_TEST_BLENDER` or `BLENDER_PATH` before running those tests.
+Run the architecture integration fixture with:
 
+```powershell
+& $env:BLENDERCODEX_TEST_BLENDER --factory-startup -b --python .\.agents\codex-plugins\blendercodex\tests\test_architecture_runtime_blender.py
+```

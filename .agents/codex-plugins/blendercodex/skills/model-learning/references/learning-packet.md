@@ -1,6 +1,6 @@
 # Learning Packet
 
-Use this template when a user asks BlenderCodex to learn from a manual model edit or a repair trace.
+Use this template only for policy, model-local, or do-not-store lessons from a manual model edit or repair trace. A repeated geometry, validation, scene-mutation, or orchestration workflow is executable: use `../../workflow-learning/references/executor-promotion-schema.md` instead and promote it into an owning runtime, MCP action, fixture, and regression tests.
 
 ## Required Fields
 
@@ -16,21 +16,22 @@ Use this template when a user asks BlenderCodex to learn from a manual model edi
 
 ## Classification Guide
 
+- Use the workflow-learning executable packet when the correction describes an operation that can be repeated. Prose-only storage is not completion for executable lessons.
 - Use `global_default` when the edit fixes a repeated or clearly general modeling failure.
 - Use `scoped_skill_rule` when the edit records a verified preference or past failure that should affect future behavior only under clear trigger conditions.
 - Use `model_local` when the edit is only meaningful for the current `.blend`.
 - Use `do_not_store` for exploratory changes, temporary debugging, secrets, unverified guesses, or accidental edits.
 
-## Minimal Example
+## Minimal Policy Example
 
 ```yaml
 artifact: D:/project/house.blend
-user_edit: Added triangular panels under both short sides of a gabled roof.
-observed_problem: Roof slopes and tiles left a hollow triangular side gap.
-inferred_reason: Side gable faces are part of the structural closure of a house roof.
-future_rule: Gabled house roofs need short-side triangular gable panels aligned to wall top, eaves, ridge, and roof thickness.
-scope: global_default
-storage_target: blendercodex/SKILL.md and blendercodex/references/modeling-standards.md
-validation: Grep for the new rule and inspect created panels for material and UVs.
-limits: Do not apply to open pavilions, exposed-truss designs, or references that clearly show an open roof side.
+user_edit: Requested that intentionally open pavilions never receive automatic gable closure panels.
+observed_problem: A general house rule was being applied to a building type that intentionally exposes its roof structure.
+inferred_reason: Pavilion classification changes the design constraint; there is no deterministic geometry operation to promote from this preference alone.
+future_rule: Do not add gable closure panels to a structure classified as an open pavilion unless the user explicitly requests them.
+scope: scoped_skill_rule
+storage_target: blendercodex/references/modeling-standards.md
+validation: Assert the pavilion exception is routed as policy and does not claim a runtime action.
+limits: This exception does not apply to enclosed houses with accidentally missing gable panels.
 ```
